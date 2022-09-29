@@ -53,5 +53,4 @@ dkms.conf
 .*
 *.swp
 *.sw
-a.out
 
