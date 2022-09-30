@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:18:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/28 17:00:32 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:28:29 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,28 @@ static char	*fill_array(char *s, char c)
 	return (str);
 }
 
+char	**ft_free(char **str, int i)
+{
+	while (i >= 0)
+	{
+		free(str[i]);
+		str[i] = 0;
+		i--;
+	}
+	free(str);
+	str = 0;
+	return (0);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**str;
 	int		i;
 
-	if (!s)
-		return (0);
-	i = word_count(s, c);
-	str = (char **)malloc((i + 1) * sizeof(char *));
+	i = 0;
+	str = (char **)malloc((word_count(s, c) + 1) * sizeof(char *));
 	if (!str)
 		return (0);
-	i = 0;
 	while (*s)
 	{
 		while (*s == c && *s)
@@ -78,6 +88,9 @@ char	**ft_split(char const *s, char c)
 		if (*s != c && *s)
 		{
 			str[i] = fill_array((char *)s, c);
+			if (!str[i])
+				return (ft_free(str, i));
+			i++;
 			while (*s != c && *s)
 				s++;
 		}
@@ -92,9 +105,8 @@ char	**ft_split(char const *s, char c)
 	int i;
 	
 	i = 0;
-	str = ft_split("lorem ipsum dolor sit amet, 
-	consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
-	while (i < 20)
+	str = ft_split("hola", ' ');
+	while (i < 9)
 	{
 		printf("%s\n", str[i]);
 		i++;
