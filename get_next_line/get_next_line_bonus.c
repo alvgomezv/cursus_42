@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:08:07 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/04 12:24:32 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:39:16 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			x;
 
-	if (fd == -1)
+	if (fd < -1 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (0);
 	if (read(fd, &x, 0) < 0)
 		return (0);
