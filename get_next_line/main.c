@@ -1,0 +1,16 @@
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+int main(void)
+{
+	int	fd;
+
+	fd = open("/Users/alvgomez/cursus_42/get_next_line/text.txt", O_RDONLY);
+	printf("%s", get_next_line_bonus(fd));
+	printf("%s", get_next_line_bonus(fd));
+	printf("%s", get_next_line_bonus(fd));
+}

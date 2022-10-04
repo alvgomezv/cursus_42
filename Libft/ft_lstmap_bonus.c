@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:24:21 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/30 15:59:55 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:06:25 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		return (NULL);
 	while (lst)
 	{
-		temp = ft_lstnew(f(lst->content));
-		if (!temp)
+		temp = (t_list *)malloc(sizeof(t_list));
+		if (temp == NULL)
 		{
 			while (new)
 			{
@@ -35,6 +35,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			}
 			return (0);
 		}
+		temp->content = f(lst->content);
+		temp->next = 0;
 		ft_lstadd_back(&new, temp);
 		lst = lst->next;
 	}

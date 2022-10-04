@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2022/09/30 16:09:09 by alvgomez         ###   ########.fr        #
+#    Updated: 2022/10/01 11:44:06 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,25 +57,25 @@ ft_lstclear_bonus.c \
 ft_lstiter_bonus.c \
 ft_lstmap_bonus.c
 
-
 OBJS = ${SRCS:.c=.o}
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
-${NAME}:	
+all:	${NAME}	
+
+${NAME}:	${OBJS}
 			@gcc ${FLAGS} -c ${SRCS}
 			@ar rc ${NAME} ${OBJS}
 
-all:	${NAME}	
-
-bonus:	${NAME}	
+bonus:		${NAME}	
 			@gcc $(FLAGS) -c $(BONUS_SRCS)
 			@ar rc $(NAME) $(BONUS_OBJS)
 
 clean:	
 		@rm -f ${OBJS}
+		@rm -f ${BONUS_OBJS}
 
 fclean:	clean
 		@rm -f ${NAME}
