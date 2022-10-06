@@ -6,16 +6,21 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 12:43:43 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/04 18:24:31 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:40:33 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *str)
 {
 	int	i;
 
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	if (!str)
 		return (-1);
 	i = 0;

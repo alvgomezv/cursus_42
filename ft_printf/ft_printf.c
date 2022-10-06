@@ -6,57 +6,61 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:44:10 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/04 18:48:57 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:45:54 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	what_to_print(char c, va_list list)
 {
 	if (c == 'c')
-		return (ft_putchar(va_arg(list, char)));
+		return (ft_putchar(va_arg(list, int)));
 	if (c == 's')
 		return (ft_putstr(va_arg(list, char *)));
-	//if (c == 'p')
-		//return (ft_hexadecimal(va_arg(list, void *)));
-	//if (c == 'd')
-		//return (ft_putstr(va_arg(list, char *)));
+	if (c == 'p')
+		return (ft_void_hexadecimal(va_arg(list, void *)));
+	if (c == 'd')
+		return (ft_putnbr(va_arg(list, int)));
 	if (c == 'i')
-		return (ft_putnbr(va_arg(list, char *)));
-	//if (c == 'u')
-		//return (ft_putstr(va_arg(list, char *)));
-	//if (c == 'x')
-		//return (ft_putstr(va_arg(list, char *)));
-	//if (c == 'X')
-		//return (ft_putstr(va_arg(list, char *)));
+		return (ft_putnbr(va_arg(list, int)));
+	if (c == 'u')
+		return (ft_unsigned_putnbr(va_arg(list, unsigned int)));
+	if (c == 'x')
+		return (ft_hexadecimal(va_arg(list, int), "0123456789abcdef"));
+	if (c == 'X')
+		return (ft_hexadecimal(va_arg(list, int), "0123456789ABCDEF"));
 	if (c == '%')
 		return (ft_putchar('%'));
+	return (0);
 }
 
 int	ft_printf(const char *arg, ...)
 {
 	va_list	list;
 	int		a;
-	int		b;
 	int		cont;
+	int		b;
 
 	va_start(list, arg);
 	cont = 0;
-	b = 0;
+	a = 0;
 	while (arg[a] != '\0')
 	{
 		if (arg[a] == '%')
 		{
 			a++;
 			b = what_to_print(arg[a], list);
-			if (b == -1)
-				return (-1);
-			cont = cont + b - 2;
+			cont = cont + b;
 		}
+		else
+		{
+			write (1, &arg[a], 1);
+			cont++;
+		}	
 	a++;
 	}
-	cont = cont + a;
+	va_end(list);
 	return (cont);
 }
 

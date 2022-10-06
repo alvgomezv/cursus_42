@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:08:07 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/04 13:39:16 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:00:38 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ char	*get_last_buff(char *last_buff, int fd)
 	char	buff[BUFFER_SIZE + 1];
 	int		nbr_bytes;
 
-	nbr_bytes = BUFFER_SIZE;
-	while (ft_strchr(last_buff, '\n') == NULL && nbr_bytes == BUFFER_SIZE)
+	nbr_bytes = 1;
+	while (ft_strchr(last_buff, '\n') == NULL && nbr_bytes != 0)
 	{
 		nbr_bytes = read(fd, buff, BUFFER_SIZE);
+		if (nbr_bytes == -1)
+			return (0);
 		if (nbr_bytes == 0)
 		{
 			return (last_buff);
@@ -60,11 +62,8 @@ char	*get_next_line(int fd)
 {
 	static char	*last_buff[1024];
 	char		*line;
-	int			x;
 
-	if (fd < -1 || fd >= 1024 || BUFFER_SIZE <= 0)
-		return (0);
-	if (read(fd, &x, 0) < 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (0);
 	last_buff[fd] = get_last_buff(last_buff[fd], fd);
 	if (last_buff[fd] == 0)

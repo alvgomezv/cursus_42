@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:08:07 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/04 11:11:21 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:55:09 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,14 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			x;
 
+	x = 0;
 	if (fd == -1)
 		return (0);
 	if (read(fd, &x, 0) < 0)
+	{
+		free (last_buff);
 		return (0);
+	}
 	last_buff = get_last_buff(last_buff, fd);
 	if (last_buff == 0)
 		return (0);

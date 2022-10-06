@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_hexadecimal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 12:07:18 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/04 18:22:04 by alvgomez         ###   ########.fr       */
+/*   Created: 2022/10/05 11:01:12 by alvgomez          #+#    #+#             */
+/*   Updated: 2022/10/05 12:22:18 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+//#include <unistd.h>
+//#include <stdio.h>
+#include "ft_printf.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdarg.h>
+int	ft_hexadecimal(unsigned int nbr, char *base)
+{
+	unsigned int	quot;
+	unsigned int	mod;
+	unsigned int	res;
 
-int	ft_printf(const char *arg, ...);
+	res = 0;
+	quot = nbr / 16;
+	mod = nbr % 16;
+	if (quot != 0)
+		res = (ft_hexadecimal(quot, base));
+	write(1, &base[mod], 1);
+	return (res + 1);
+}
 
-int	ft_putchar(char c);
-
-int	ft_putnbr_fd(int n);
-
-int	ft_putstr(char *str);
-
-#endif
+/*int	main(void)
+{
+	printf("\n%d\n", ft_hexadecimal(-1542, "0123456789ABCDEF"));
+}*/

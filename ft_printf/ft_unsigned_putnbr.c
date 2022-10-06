@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_unsigned_putnbr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:32:27 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/06 11:26:03 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:25:45 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_number(int nb, long int mult)
+static unsigned int	print_number(unsigned int nb, long int mult)
 {
 	char	a;
 	int		i;
@@ -40,7 +40,7 @@ static int	print_number(int nb, long int mult)
 	}
 }
 
-static long int	multi(int nb)
+static long int	multi(unsigned int nb)
 {
 	long int	mult;
 
@@ -53,7 +53,7 @@ static long int	multi(int nb)
 	return (mult);
 }
 
-int	ft_putnbr(int nb)
+int	ft_unsigned_putnbr(unsigned int nb)
 {
 	long int	mult;
 	int			a;
@@ -64,25 +64,9 @@ int	ft_putnbr(int nb)
 		write(1, "0", 1);
 		return (1);
 	}
-	else if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return (11);
-	}
 	else
 	{
-		if (nb < 0)
-		{
-			write(1, "-", 1);
-			nb = (-nb);
-			a = 1;
-		}
 		mult = multi(nb);
 		return (a + print_number(nb, mult));
 	}
 }
-
-/*int main(void)
-{
-	printf("\n%d\n", ft_putnbr(-436625));
-}*/

@@ -6,16 +6,14 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 15:08:32 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/04 18:21:50 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:14:53 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_putchar(char c)
+int	ft_putchar(int c)
 {
-	if (!c)
-		return (-1);
 	write(1, &c, 1);
 	return (1);
 }
