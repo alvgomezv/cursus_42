@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2022/10/11 21:06:02 by alvgomez         ###   ########.fr        #
+#    Updated: 2022/10/17 18:04:04 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ ft_lstadd_back_bonus.c \
 ft_lstdelone_bonus.c \
 ft_lstclear_bonus.c \
 ft_lstiter_bonus.c \
-ft_lstmap_bonus.c \
 ft_printf.c \
 ft_putnbr.c \
 ft_putnbr.c \
@@ -71,8 +70,7 @@ FLAGS = -Wall -Wextra -Werror
 all:	${NAME}	
 
 ${NAME}:	${OBJS}
-			@gcc ${FLAGS} -c ${SRCS}
-			@ar rc ${NAME} ${OBJS}
+		@ar rc ${NAME} ${OBJS}
 
 clean:	
 		@rm -f ${OBJS}

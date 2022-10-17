@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/11 20:57:15 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:38:55 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <ctype.h>
 # include <stdarg.h>
+# include <signal.h>
 
 typedef struct s_list
 {
