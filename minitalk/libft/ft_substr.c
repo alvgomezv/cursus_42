@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:53:33 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/27 11:37:09 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:26:51 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str1[i] = '\0';
 	return (str1);
 }
-
-/* 
-Allocates (with malloc(3)) and returns a substring from the string ’s’.
-The substring begins at index ’start’ and is of maximum size ’len’.
-*/
-
-/*int	main(void)
-{
-	//printf("%s\n", ft_substr("01234", 10, 10));
-	char *str = "01234";
- 	size_t size = 10;
- 	char *ret = ft_substr(str, 10, size);
-
- 	if (!strncmp(ret, "", 1))
- 	{
- 		printf("bien");
- 	}
- 	else 
-		printf("mal");
-}*/

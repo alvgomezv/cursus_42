@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:12:04 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/22 19:17:40 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:26:01 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[i] = '\0';
 	return (str);
 }
-
-/*int	main(void)
-{
-	printf("%s\n", ft_strjoin("hola", "Pepe"));
-}*/

@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:04:50 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/05 18:16:37 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:25:33 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = ft_substr(s1, 0, length + 1);
 	return (str);
 }
-
-/*int	main(void)
-{
-	printf("%s\n", ft_strtrim("  \t \t \n   \n\n\n\t", " \n\t"));
-}*/

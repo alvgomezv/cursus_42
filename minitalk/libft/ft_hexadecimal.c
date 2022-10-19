@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:01:12 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/11 20:54:36 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:23:54 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,3 @@ int	ft_hexadecimal(unsigned int nbr, char *base)
 	write(1, &base[mod], 1);
 	return (res + 1);
 }
-
-/*int	main(void)
-{
-	printf("\n%d\n", ft_hexadecimal(-1542, "0123456789ABCDEF"));
-}*/

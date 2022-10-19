@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 17:09:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/28 18:52:58 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:24:38 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,3 @@ t_list	*ft_lstnew(void *content)
 	new->next = 0;
 	return (new);
 }
-
-/*
-Allocates (with malloc(3)) and returns a new node. 
-The member variable ’content’ is initialized with 
-the value of the parameter ’content’. 
-The variable ’next’ is initialized to NULL.
-*/

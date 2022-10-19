@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:45:36 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/20 15:38:41 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:24:03 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,3 @@ int	ft_isalpha(int argument)
 	else
 		return (0);
 }
-
-/*int	main(void)
-{
-	printf("%d\n", ft_isalpha('0'));
-	printf("%d", isalpha('0'));
-}*/

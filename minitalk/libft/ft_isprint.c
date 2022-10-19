@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 15:00:50 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/22 12:35:05 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:24:14 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,3 @@ int	ft_isprint(int argument)
 	else
 		return (0);
 }
-
-/*int	main(void)
-{
-	printf("%d\n", ft_isprint(' '));
-	printf("%d", isprint(' '));
-}*/

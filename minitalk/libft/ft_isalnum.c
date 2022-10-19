@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:17:22 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/20 15:19:46 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:23:59 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,3 @@ int	ft_isalnum(int argument)
 	else
 		return (0);
 }
-
-/*int	main(void)
-{
-	printf("%d\n", ft_isalnum('-'));
-	printf("%d", isalnum('-'));
-}*/

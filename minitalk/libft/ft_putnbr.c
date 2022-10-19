@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:32:27 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/11 20:54:26 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:25:20 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,3 @@ int	ft_putnbr(int nb)
 		return (a + print_number(nb, mult));
 	}
 }
-
-/*int main(void)
-{
-	printf("\n%d\n", ft_putnbr(-436625));
-}*/

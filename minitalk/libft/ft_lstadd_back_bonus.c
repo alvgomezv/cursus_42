@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:52:48 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/29 20:54:52 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:24:20 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,3 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		current->next = new;
 	}
 }
-
-/*
-Adds the node ’new’ at the end of the list.
-*/

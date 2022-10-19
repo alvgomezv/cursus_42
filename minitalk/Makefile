@@ -6,41 +6,57 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2022/10/17 17:57:23 by alvgomez         ###   ########.fr        #
+#    Updated: 2022/10/18 13:22:14 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFT = ./libft/libft.a
-NAME_1 = client 
-NAME_2 = server
-SRCS_1 = client.c 
-SRCS_2 = server.c 
+CLIENT = client 
+SERVER = server
+CLIENT_BONUS = client_bonus 
+SERVER_BONUS = server_bonus
+SRCS_CLIENT = client.c 
+SRCS_SERVER = server.c 
+SRCS_CLIENT_BONUS = client_bonus.c 
+SRCS_SERVER_BONUS = server_bonus.c 
 CC = gcc
 
-OBJS_1 = ${SRCS_1:.c=.o}
-OBJS_2 = ${SRCS_2:.c=.o}
+OBJS_CLIENT = ${SRCS_CLIENT:.c=.o}
+OBJS_SERVER = ${SRCS_SERVER:.c=.o}
+OBJS_CLIENT_BONUS = ${SRCS_CLIENT_BONUS:.c=.o}
+OBJS_SERVER_BONUS = ${SRCS_SERVER_BONUS:.c=.o}
 
 FLAGS = -Wall -Wextra -Werror
 
-all:	make ${NAME_1} ${NAME_2}
+all:	${CLIENT} ${SERVER}
 		 
-${NAME_1}:	${OBJS_1} ${LIBFT}
-		${CC} ${FLAGS} ${OBJS_1} ${LIBFT} -o ${NAME_1}
+${CLIENT}:	${LIBFT} ${OBJS_CLIENT} 
+		${CC}  ${FLAGS} ${OBJS_CLIENT} ${LIBFT} -o ${CLIENT}
 		
-${NAME_2}:	${OBJS_2} ${LIBFT}
-		${CC} ${FLAGS} ${OBJS_2} ${LIBFT} -o ${NAME_2}
+${SERVER}: ${LIBFT}	${OBJS_SERVER}
+		${CC}  ${FLAGS} ${OBJS_SERVER} ${LIBFT} -o ${SERVER}
 
-make: 
-		cd libft && make
+${LIBFT}:
+		${MAKE} -C libft all
+
+${CLIENT_BONUS}:	${LIBFT} ${OBJS_CLIENT_BONUS} 
+		${CC}  ${FLAGS} ${OBJS_CLIENT_BONUS} ${LIBFT} -o ${CLIENT_BONUS}
+		
+${SERVER_BONUS}: ${LIBFT}	${OBJS_SERVER_BONUS}
+		${CC}  ${FLAGS} ${OBJS_SERVER_BONUS} ${LIBFT} -o ${SERVER_BONUS}
+
+bonus:	${CLIENT_BONUS} ${SERVER_BONUS}
 
 clean:	
-		@rm -f ${OBJS_1} ${OBJS_2}
-		@cd libft && make clean
+		@rm -f ${OBJS_CLIENT} ${OBJS_SERVER}
+		@rm -f ${OBJS_CLIENT_BONUS} ${OBJS_SERVER_BONUS}
+		@${MAKE} -C libft clean
 
 fclean:	clean
-		@rm -f ${NAME_1} ${NAME_2}
-		@cd libft && make fclean
+		@rm -f ${CLIENT} ${SERVER}
+		@rm -f ${CLIENT_BONUS} ${SERVER_BONUS}
+		@${MAKE} -C libft fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re make
+.PHONY: all clean fclean re bonus

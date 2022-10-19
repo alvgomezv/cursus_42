@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2022/10/17 18:04:04 by alvgomez         ###   ########.fr        #
+#    Updated: 2022/10/18 10:58:15 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ FLAGS = -Wall -Wextra -Werror
 all:	${NAME}	
 
 ${NAME}:	${OBJS}
-		@ar rc ${NAME} ${OBJS}
+		ar rc ${NAME} ${OBJS}
 
 clean:	
 		@rm -f ${OBJS}

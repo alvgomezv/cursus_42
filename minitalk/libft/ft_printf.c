@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:44:10 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/11 20:54:20 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:25:14 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,3 @@ int	ft_printf(const char *arg, ...)
 	va_end(list);
 	return (cont);
 }
-
-/*Variadic functions -  functions that can take
-a variable number of arguments.
-
-Library - #include <stdarg.h>
-
-functions:
-
-va_start(va_list ap, argN) 
-va_arg(va_list ap, type)
-va_copy(va_list dest, va_list src)
-va_end(va_list ap)
-
-va_list holds the information needed 
-by va_start, va_arg, va_end, and va_copy.
-*/

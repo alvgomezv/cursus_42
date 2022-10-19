@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:10:27 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/20 13:25:38 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:24:11 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,3 @@ int	ft_isdigit(int argument)
 	else
 		return (0);
 }
-
-/*int	main(void)
-{
-	printf("%d\n", ft_isdigit('0'));
-	printf("%d", isdigit('0'));
-}*/

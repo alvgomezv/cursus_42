@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:22:23 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/20 15:19:16 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:24:07 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,3 @@ int	ft_isascii(int argument)
 	else
 		return (0);
 }
-
-/*int	main(void)
-{
-	printf("%d\n", ft_isascii('0'));
-	printf("%d", isascii('0'));
-}*/

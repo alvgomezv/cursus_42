@@ -6,13 +6,13 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:34:37 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/19 13:38:56 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:57:21 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-int	g_global = 0;
+int	g_global;
 
 void	handle_signal(int sig)
 {

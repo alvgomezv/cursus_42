@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:16:39 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/23 16:36:38 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:24:37 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,3 @@ int	ft_atoi(const char *str)
 	nbr = convert_to_int(s, i);
 	return (nbr * sign);
 }
-
-/*int	main(void)
-{
-	int		rest;
-	char	*str = " 	-2147483648";
-
-	rest = atoi(str);
-	printf("%d\n", rest);
-
-	rest = ft_atoi(str);
-	printf("%d\n", rest);
-}*/
