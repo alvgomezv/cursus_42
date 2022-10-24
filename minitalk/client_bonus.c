@@ -6,17 +6,19 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:34:37 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/19 13:57:21 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:05:43 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
+#define DELAY 100 //cambio no importante
 
 int	g_global;
 
 void	handle_signal(int sig)
 {
 	g_global = 1;
+	return ;
 }
 
 void	send_message(pid_t s_id, unsigned char *message)
@@ -25,7 +27,8 @@ void	send_message(pid_t s_id, unsigned char *message)
 	struct sigaction	sa;
 
 	sa.sa_handler = &handle_signal;
-	sa.sa_flags = SA_SIGINFO | SA_RESTART;
+	sa.sa_flags = 0; //SA_SIGINFO | SA_RESTART; cambio
+	sigaction(SIGUSR1, &sa, NULL);
 	i = 0;
 	while (i < 8)
 	{
@@ -33,12 +36,12 @@ void	send_message(pid_t s_id, unsigned char *message)
 			kill(s_id, SIGUSR1);
 		else if (message[i] == 1)
 			kill(s_id, SIGUSR2);
-		sigaction(SIGUSR1, &sa, NULL);
+		usleep(50);
 		while (g_global != 1)
 			usleep(5);
 		g_global = 0;
 		i++;
-		usleep(150);
+		usleep(DELAY); //cambio
 	}
 	free (message);
 }

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 09:55:55 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/19 13:41:21 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:27:40 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-unsigned char	convert_to_decimal(unsigned char *message)
+char	convert_to_decimal(char *message)
 {
-	int				i;
-	unsigned char	c;
-	unsigned char	b;
+	int		i;
+	char	c;
+	int		b;
 
 	i = 0;
 	c = 0;
@@ -30,15 +30,15 @@ unsigned char	convert_to_decimal(unsigned char *message)
 	return (c);
 }
 
-void	handle_signal(int sig, siginfo_t *info, void *ucontext)
+void	handle_signal(int sig)
 {
-	static int				i;
-	unsigned char			ch;
-	static unsigned char	*message;
+	static int		i;
+	char			ch;
+	static char		*message;
 
 	if (i == 0)
 	{
-		message = (unsigned char *)malloc(sizeof(int) * 8);
+		message = (char *)malloc(sizeof(int) * 8);
 		if (message == 0)
 			exit(EXIT_FAILURE);
 	}
@@ -46,7 +46,8 @@ void	handle_signal(int sig, siginfo_t *info, void *ucontext)
 		message[i++] = 0;
 	else if (sig == SIGUSR2)
 		message[i++] = 1;
-	kill(info->si_pid, SIGUSR1);
+	else
+		exit(EXIT_FAILURE);
 	if (i == 8)
 	{
 		ch = convert_to_decimal(message);
@@ -62,8 +63,8 @@ int	main(void)
 	pid_t				id;
 	struct sigaction	sa;
 
-	sa.sa_sigaction = &handle_signal;
-	sa.sa_flags = SA_SIGINFO | SA_NODEFER | SA_RESTART;
+	sa.sa_handler = &handle_signal;
+	sa.sa_flags = SA_NODEFER | SA_RESTART;
 	id = getpid();
 	ft_printf("%d\n", (int)id);
 	sigaction(SIGUSR1, &sa, NULL);

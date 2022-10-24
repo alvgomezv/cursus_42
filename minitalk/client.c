@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:34:37 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/19 13:38:56 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:25:07 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-int	g_global = 0;
-
-void	handle_signal(int sig)
+void	send_message(pid_t s_id, char *message)
 {
-	g_global = 1;
-}
+	int	i;
 
-void	send_message(pid_t s_id, unsigned char *message)
-{
-	int					i;
-	struct sigaction	sa;
-
-	sa.sa_handler = &handle_signal;
-	sa.sa_flags = SA_SIGINFO | SA_RESTART;
 	i = 0;
 	while (i < 8)
 	{
@@ -33,25 +23,21 @@ void	send_message(pid_t s_id, unsigned char *message)
 			kill(s_id, SIGUSR1);
 		else if (message[i] == 1)
 			kill(s_id, SIGUSR2);
-		sigaction(SIGUSR1, &sa, NULL);
-		while (g_global != 1)
-			usleep(5);
-		g_global = 0;
 		i++;
 		usleep(150);
 	}
 	free (message);
 }
 
-unsigned char	*convert_to_binary(unsigned char nbr)
+char	*convert_to_binary(char nbr)
 {
-	unsigned char	*message;
-	int				i;
-	unsigned char	aux;
+	char	*message;
+	int		i;
+	char	aux;
 
 	aux = nbr;
 	i = 7;
-	message = (unsigned char *)malloc(sizeof(unsigned char) * 8);
+	message = (char *)malloc(sizeof(char) * 8);
 	if (message == 0)
 		exit(EXIT_FAILURE);
 	while (nbr > 0 && i > -1)
@@ -70,9 +56,9 @@ unsigned char	*convert_to_binary(unsigned char nbr)
 
 int	main(int argc, char **argv)
 {
-	pid_t				s_id;
-	unsigned char		*message;
-	int					i;
+	pid_t	s_id;
+	char	*message;
+	int		i;
 
 	i = 0;
 	if (argc != 3)
@@ -80,7 +66,7 @@ int	main(int argc, char **argv)
 	s_id = (pid_t)ft_atoi(argv[1]);
 	while (argv[2][i] != '\0')
 	{
-		message = convert_to_binary((unsigned char)argv[2][i]);
+		message = convert_to_binary((char)argv[2][i]);
 		send_message(s_id, message);
 		i++;
 	}
