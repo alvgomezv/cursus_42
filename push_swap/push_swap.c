@@ -6,23 +6,24 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/24 17:34:58 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:32:55 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
-int	*to_zero(int n);
-int	array_len(int *array);
 
-void	swap(int *array)
+t_value	*to_zero(int n);
+int		array_len(int *array);
+
+void	swap(t_value *array)
 {
-	int aux;
+	int	aux;
 	int	len;
 
 	len = array_len(array) - 1;
-	aux = array[len];
-	array[len] = array[len - 1];
-	array[len - 1] = aux;
+	aux = array[len].value;
+	array[len].value = array[len - 1].value;
+	array[len - 1].value = aux;
 }
 
 void	push(int *array_1, int *array_2, int max_len)
@@ -32,11 +33,11 @@ void	push(int *array_1, int *array_2, int max_len)
 
 	len_1 = array_len(array_1);
 	len_2 = array_len(array_2);
-	ft_printf("%d\n", len_1);
-	ft_printf("%d\n", len_2);
-	ft_printf("%d\n", max_len);
+	//ft_printf("%d\n", len_1);
+	//ft_printf("%d\n", len_2);
+	//ft_printf("%d\n", max_len);
 	if (len_1 == 0)
-		return;
+		return ;
 	if ((len_2 + 1) > max_len)
 		exit(EXIT_FAILURE);
 	array_2[len_2] = array_1[len_1 - 1];
@@ -87,30 +88,31 @@ void	rotate(int *array)
 
 int	main(int argc, char **argv)
 {
-	int	*list;
-	int	*temp;
-	int	i;
-	int len;
+	t_value	*list;
+	t_value	*temp;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = argc - 1;
 	if (argc < 2)
 		exit(EXIT_FAILURE);
-	list = (int *)malloc(sizeof(int) * len);
+	list = (t_value *)malloc(sizeof(t_value) * len);
 	if (list == 0)
 		exit(EXIT_FAILURE);
 	while (argc > 1)
 	{
-		list[i] = ft_atoi(argv[argc - 1]);
+		list[i].value = ft_atoi(argv[argc - 1]);
+		list[i].position = i;
 		i++;
 		argc--;
 	}
 	temp = to_zero(len - 1);
 	//rotate(list);
 	i = 0;
-	while (list[i])
+	while (list[i].value)
 	{
-		ft_printf("%d ", list[i]);
+		ft_printf("%d ", list[i].value);
 		i++;
 	}
 	i = 0;

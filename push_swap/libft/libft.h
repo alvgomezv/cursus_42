@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/14 16:38:55 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:30:15 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,17 @@
 # include <stdarg.h>
 # include <signal.h>
 
+typedef struct s_value
+{
+	int	value;
+	int	position;
+}				t_value;
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}				t_list;
 
 int				ft_atoi(const char *str);
 
