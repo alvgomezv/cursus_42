@@ -6,34 +6,48 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 13:07:14 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/11/10 17:31:24 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:25:26 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-t_value	*to_zero(int n)
+t_stack	**create_stack(int n)
 {
 	int		i;
-	t_value	*array;
+	t_stack	**stack;
 
 	i = 0;
-	array = (t_value *)malloc(sizeof(t_value) * n);
+	stack = (t_stack **)malloc(sizeof(t_stack *) * n);
 	while (i < n)
 	{
-		array[i].value = 0;
-		array[i].position = i;
+		stack[i] = (t_stack *)malloc(sizeof(t_stack));
 		i++;
 	}
-	return (array);
+	return (stack);
 }
 
-int	array_len(t_value *array)
+t_stack	**create_stack_to_zero(int n)
+{
+	int		i;
+	t_stack	**stack;
+
+	i = 0;
+	stack = (t_stack **)malloc(sizeof(t_stack *) * n);
+	while (i < n)
+	{
+		stack[i] = 0;
+		i++;
+	}
+	return (stack);
+}
+
+int	stack_len(t_stack **stack)
 {
 	int	i;
 
 	i = 0;
-	while (array[i].value != 0)
+	while (stack[i] != 0)
 	{
 		i++;
 	}

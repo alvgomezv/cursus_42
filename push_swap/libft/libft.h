@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/11/10 17:30:15 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:33:38 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@
 # include <stdarg.h>
 # include <signal.h>
 
-typedef struct s_value
+typedef struct s_stack
 {
-	int	value;
-	int	position;
-}				t_value;
+	int	val;
+	int	pos;
+	int mov;
+}				t_stack;
 
 typedef struct s_list
 {
