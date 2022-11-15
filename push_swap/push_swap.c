@@ -6,26 +6,22 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/11/11 18:27:46 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/11/15 20:18:23 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-t_stack	**create_stack(int n);
-t_stack	**create_stack_to_zero(int n);
-int		stack_len(t_stack **stack);
-
-/*void	swap(t_stack *stack)
+void	swap(t_stack **stack)
 {
-	int	aux;
-	int	len;
+	t_stack	*aux;
+	int		len;
 
 	len = stack_len(stack) - 1;
-	aux = stack[len].val;
-	stack[len].val = stack[len - 1].val;
-	stack[len - 1].val = aux;
-}*/
+	aux = stack[len];
+	stack[len] = stack[len - 1];
+	stack[len - 1] = aux;
+}
 
 void	push(t_stack **stack_1, t_stack **stack_2, int max_len)
 {
@@ -45,11 +41,11 @@ void	push(t_stack **stack_1, t_stack **stack_2, int max_len)
 	stack_1[len_1 - 1] = 0;	
 }
 
-/*void	reverse_rotate(int *stack)
+void	reverse_rotate(t_stack **stack)
 {
 	int	len;
-	int	temp_1;
-	int	temp_2;
+	t_stack	*temp_1;
+	t_stack	*temp_2;
 
 	len = stack_len(stack) - 1;
 	//ft_printf("%d\n", len);
@@ -65,12 +61,12 @@ void	push(t_stack **stack_1, t_stack **stack_2, int max_len)
 	}
 }
 
-void	rotate(int *stack)
+void	rotate(t_stack **stack)
 {
-	int	len;
-	int	i;
-	int	temp_1;
-	int	temp_2;
+	int		len;
+	int		i;
+	t_stack	*temp_1;
+	t_stack	*temp_2;
 
 	i = 0;
 	len = stack_len(stack) - 1;
@@ -85,7 +81,7 @@ void	rotate(int *stack)
 			stack[i + 1] = temp_2;
 		i += 2;
 	}
-}*/
+}
 
 int	main(int argc, char **argv)
 {
@@ -104,12 +100,18 @@ int	main(int argc, char **argv)
 	while (argc > 1)
 	{
 		stack_1[i]->val = ft_atoi(argv[argc - 1]);
+		if (repeted(stack_1, i) == 1)
+		{
+			write(1, "Error\n", 6);
+			exit(EXIT_FAILURE);
+		}
 		i++;
 		argc--;
 	}
 	stack_2 = create_stack_to_zero(len);
-	ft_printf("%d\n", stack_len(stack_2));
-	//rotate(stack_1);
+	find_positions(stack_1, stack_len(stack_1));
+	algorithm(stack_1, stack_2);
+	write(1, "\n", 1);
 	i = 0;
 	while (stack_1[i])
 	{
@@ -118,13 +120,19 @@ int	main(int argc, char **argv)
 	}
 	i = 0;
 	write(1, "\n", 1);
-	push(stack_1, stack_2, len);
 	while (stack_1[i])
 	{
-		ft_printf("%d ", stack_1[i]->val);
+		ft_printf("%d ", stack_1[i]->pos);
 		i++;
 	}
 	write(1, "\n", 1);
+	write(1, "\n", 1);
+	i = 0;
+	while (stack_2[i])
+	{
+		ft_printf("%d ", stack_2[i]->val);
+		i++;
+	}
 	i = 0;
 	while (stack_2[i])
 	{

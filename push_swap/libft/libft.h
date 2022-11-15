@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/11/11 17:33:38 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/11/15 21:09:19 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,21 @@ int				ft_hexadecimal(unsigned int nbr, char *base);
 int				ft_unsigned_putnbr(unsigned int nb);
 
 int				ft_void_hexadecimal(void *ptr);
+
+t_stack			**create_stack(int n);
+
+t_stack			**create_stack_to_zero(int n);
+
+int				stack_len(t_stack **stack);
+
+int				repeted(t_stack **stack, int pos);
+
+void			find_positions(t_stack **stack, int len);
+
+void			find_moves(t_stack **stack);
+
+void			algorithm(t_stack **stack_1, t_stack **stack_2);
+
+void			put_in_order(int *array, int len);
 
 #endif
