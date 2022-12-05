@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/11/15 20:18:23 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:03:16 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	swap(t_stack **stack)
 	aux = stack[len];
 	stack[len] = stack[len - 1];
 	stack[len - 1] = aux;
+	ft_printf("swap\n");
 }
 
 void	push(t_stack **stack_1, t_stack **stack_2, int max_len)
@@ -39,6 +40,7 @@ void	push(t_stack **stack_1, t_stack **stack_2, int max_len)
 	//	exit(EXIT_FAILURE);
 	stack_2[len_2] = stack_1[len_1 - 1];
 	stack_1[len_1 - 1] = 0;	
+	ft_printf("push\n");
 }
 
 void	reverse_rotate(t_stack **stack)
@@ -59,6 +61,7 @@ void	reverse_rotate(t_stack **stack)
 			stack[len - 1] = temp_2;
 		len -= 2;
 	}
+	ft_printf("reverse_rotate\n");
 }
 
 void	rotate(t_stack **stack)
@@ -70,17 +73,17 @@ void	rotate(t_stack **stack)
 
 	i = 0;
 	len = stack_len(stack) - 1;
+	ft_printf("%d\n", len);
 	//ft_printf("%d\n", len);
 	temp_1 = stack[len];
-	while (i < len)
+	while (i <= len)
 	{
 		temp_2 = stack[i];
 		stack[i] = temp_1;
-		temp_1 = stack[i + 1];
-		if (i <= len)
-			stack[i + 1] = temp_2;
-		i += 2;
+		temp_1 = temp_2;
+		i++;
 	}
+	ft_printf("rotate\n");
 }
 
 int	main(int argc, char **argv)
@@ -114,7 +117,5 @@ int	main(int argc, char **argv)
 	write(1, "\n", 1);
 	stack_2 = create_stack_to_zero(len);
 	algorithm(stack_1, stack_2);
-	print_stack(stack_1, 1);
-	print_stack(stack_2, 1);
 	return (0);
 }
