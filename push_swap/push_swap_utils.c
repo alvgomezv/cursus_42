@@ -79,3 +79,35 @@ void	put_in_order(int *array, int len)
 	j = i + 1;
 	}
 }
+
+void	print_stack(t_stack **stack, int number)
+{
+	int	i;
+
+	i = 0;
+	if (number == 1)
+	{
+		while (stack[i])
+		{
+			ft_printf("%d ", stack[i]->val);
+			i++;
+		}
+	}
+	if (number == 2)
+	{
+		while (stack[i])
+		{
+			ft_printf("%d ", stack[i]->pos);
+			i++;
+		}
+	}
+	if (number == 3)
+	{
+		while (stack[i])
+		{
+			ft_printf("%d ", stack[i]->mov);
+			i++;
+		}
+	}
+	write(1, "\n", 1);
+}

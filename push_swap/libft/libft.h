@@ -151,4 +151,18 @@ void			algorithm(t_stack **stack_1, t_stack **stack_2);
 
 void			put_in_order(int *array, int len);
 
+void			swap(t_stack **stack);
+
+void			push(t_stack **stack_1, t_stack **stack_2, int max_len);
+
+void			reverse_rotate(t_stack **stack);
+
+void			rotate(t_stack **stack);
+
+void			print_stack(t_stack **stack, int number);
+
+int				find_lowest_pos(t_stack **stack);
+
+int				find_the_position(t_stack **stack, int pos);
+
 #endif

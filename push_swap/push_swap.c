@@ -108,36 +108,13 @@ int	main(int argc, char **argv)
 		i++;
 		argc--;
 	}
-	stack_2 = create_stack_to_zero(len);
+	print_stack(stack_1, 1);
 	find_positions(stack_1, stack_len(stack_1));
+	print_stack(stack_1, 2);
+	write(1, "\n", 1);
+	stack_2 = create_stack_to_zero(len);
 	algorithm(stack_1, stack_2);
-	write(1, "\n", 1);
-	i = 0;
-	while (stack_1[i])
-	{
-		ft_printf("%d ", stack_1[i]->val);
-		i++;
-	}
-	i = 0;
-	write(1, "\n", 1);
-	while (stack_1[i])
-	{
-		ft_printf("%d ", stack_1[i]->pos);
-		i++;
-	}
-	write(1, "\n", 1);
-	write(1, "\n", 1);
-	i = 0;
-	while (stack_2[i])
-	{
-		ft_printf("%d ", stack_2[i]->val);
-		i++;
-	}
-	i = 0;
-	while (stack_2[i])
-	{
-		ft_printf("%d ", stack_2[i]->val);
-		i++;
-	}
+	print_stack(stack_1, 1);
+	print_stack(stack_2, 1);
 	return (0);
 }
