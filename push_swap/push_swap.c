@@ -6,13 +6,13 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/05 18:03:16 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:49:18 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	swap(t_stack **stack)
+void	swap(t_stack **stack, char x)
 {
 	t_stack	*aux;
 	int		len;
@@ -21,10 +21,10 @@ void	swap(t_stack **stack)
 	aux = stack[len];
 	stack[len] = stack[len - 1];
 	stack[len - 1] = aux;
-	ft_printf("swap\n");
+	ft_printf("s%c\n", x);
 }
 
-void	push(t_stack **stack_1, t_stack **stack_2, int max_len)
+void	push(t_stack **stack_1, t_stack **stack_2, int max_len, char x)
 {
 	int	len_1;
 	int	len_2;
@@ -40,10 +40,10 @@ void	push(t_stack **stack_1, t_stack **stack_2, int max_len)
 	//	exit(EXIT_FAILURE);
 	stack_2[len_2] = stack_1[len_1 - 1];
 	stack_1[len_1 - 1] = 0;	
-	ft_printf("push\n");
+	ft_printf("p%c\n", x);
 }
 
-void	reverse_rotate(t_stack **stack)
+void	reverse_rotate(t_stack **stack, char x)
 {
 	int	len;
 	t_stack	*temp_1;
@@ -61,10 +61,10 @@ void	reverse_rotate(t_stack **stack)
 			stack[len - 1] = temp_2;
 		len -= 2;
 	}
-	ft_printf("reverse_rotate\n");
+	ft_printf("rr%c\n", x);
 }
 
-void	rotate(t_stack **stack)
+void	rotate(t_stack **stack, char x)
 {
 	int		len;
 	int		i;
@@ -83,7 +83,7 @@ void	rotate(t_stack **stack)
 		temp_1 = temp_2;
 		i++;
 	}
-	ft_printf("rotate\n");
+	ft_printf("r%c\n", x);
 }
 
 int	main(int argc, char **argv)
@@ -113,9 +113,10 @@ int	main(int argc, char **argv)
 	}
 	print_stack(stack_1, 1);
 	find_positions(stack_1, stack_len(stack_1));
-	print_stack(stack_1, 2);
-	write(1, "\n", 1);
+	//print_stack(stack_1, 2);
+	//write(1, "\n", 1);
 	stack_2 = create_stack_to_zero(len);
 	algorithm(stack_1, stack_2);
+	print_stack(stack_1, 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/05 16:53:52 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:32:54 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,13 +151,13 @@ void			algorithm(t_stack **stack_1, t_stack **stack_2);
 
 void			put_in_order(int *array, int len);
 
-void			swap(t_stack **stack);
+void			swap(t_stack **stack, char x);
 
-void			push(t_stack **stack_1, t_stack **stack_2, int max_len);
+void			push(t_stack **stack_1, t_stack **stack_2, int max_len, char x);
 
-void			reverse_rotate(t_stack **stack);
+void			reverse_rotate(t_stack **stack, char x);
 
-void			rotate(t_stack **stack);
+void			rotate(t_stack **stack, char x);
 
 void			print_stack(t_stack **stack, int number);
 
