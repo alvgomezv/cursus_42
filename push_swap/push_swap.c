@@ -100,6 +100,7 @@ int	main(int argc, char **argv)
 	stack_1 = create_stack(len);
 	if (stack_1 == 0)
 		exit(EXIT_FAILURE);
+	//ft_printf("%d\n", argv[1]);
 	while (argc > 1)
 	{
 		stack_1[i]->val = ft_atoi(argv[argc - 1]);
@@ -111,12 +112,12 @@ int	main(int argc, char **argv)
 		i++;
 		argc--;
 	}
-	print_stack(stack_1, 1);
+	//print_stack(stack_1, 1);
 	find_positions(stack_1, stack_len(stack_1));
 	//print_stack(stack_1, 2);
 	//write(1, "\n", 1);
 	stack_2 = create_stack_to_zero(len);
 	algorithm(stack_1, stack_2);
-	print_stack(stack_1, 1);
+	//print_stack(stack_1, 1);
 	return (0);
 }
