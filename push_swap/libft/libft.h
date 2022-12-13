@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/07 17:32:54 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:55:58 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,7 @@ void			print_stack(t_stack **stack, int number);
 int				find_lowest_pos(t_stack **stack);
 
 int				find_the_position(t_stack **stack, int pos);
+
+t_stack			**push_swap_split(char **argv);
 
 #endif

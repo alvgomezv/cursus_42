@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/07 17:49:18 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:54:21 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,29 +94,37 @@ int	main(int argc, char **argv)
 	int		len;
 
 	i = 0;
-	len = argc - 1;
+	
 	if (argc < 2)
 		exit(EXIT_FAILURE);
-	stack_1 = create_stack(len);
-	if (stack_1 == 0)
-		exit(EXIT_FAILURE);
-	while (argc > 1)
+	else if (argc == 2)
 	{
-		stack_1[i]->val = ft_atoi(argv[argc - 1]);
-		if (repeted(stack_1, i) == 1)
-		{
-			write(1, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
-		i++;
-		argc--;
+		stack_1 = push_swap_split(argv);
 	}
-	print_stack(stack_1, 1);
+	else
+	{
+		len = argc - 1;
+		stack_1 = create_stack(len);
+		if (stack_1 == 0)
+			exit(EXIT_FAILURE);
+		while (argc > 1)
+		{
+			stack_1[i]->val = ft_atoi(argv[argc - 1]);
+			if (repeted(stack_1, i) == 1)
+			{
+				write(1, "Error\n", 6);
+				exit(EXIT_FAILURE);
+			}
+			i++;
+			argc--;
+		}
+	}
+	//print_stack(stack_1, 1);
 	find_positions(stack_1, stack_len(stack_1));
 	//print_stack(stack_1, 2);
 	//write(1, "\n", 1);
 	stack_2 = create_stack_to_zero(len);
 	algorithm(stack_1, stack_2);
-	print_stack(stack_1, 1);
+	//print_stack(stack_1, 1);
 	return (0);
 }
