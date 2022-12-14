@@ -6,17 +6,19 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:16:39 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 12:24:37 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:48:34 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
+#include <limits.h>
 
-static int	convert_to_int(char *str, int i)
+static long int	convert_to_int(char *str, int i)
 {
-	int	rest;
+	long int	rest;
 
 	rest = 0;
 	while (str[i] >= '0' && str[i] <= '9')
@@ -30,10 +32,10 @@ static int	convert_to_int(char *str, int i)
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		sign;
-	int		nbr;
-	char	*s;
+	int				i;
+	int				sign;
+	long int		nbr;
+	char			*s;
 
 	i = 0;
 	sign = 1;
@@ -48,5 +50,7 @@ int	ft_atoi(const char *str)
 	i++;
 	}
 	nbr = convert_to_int(s, i);
+	if (nbr > INT_MAX || nbr < INT_MIN)
+		Error();
 	return (nbr * sign);
 }

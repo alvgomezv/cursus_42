@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:44:22 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/05 16:53:41 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:50:06 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,10 @@ void	print_stack(t_stack **stack, int number)
 		}
 	}
 	write(1, "\n", 1);
+}
+
+void	Error(void)
+{
+	write(1, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }

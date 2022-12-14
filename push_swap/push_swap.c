@@ -6,65 +6,25 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/14 11:21:37 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:22:57 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	swap(t_stack **stack, char x)
+void	swap_both(t_stack **stack_1, t_stack **stack_2)
 {
 	t_stack	*aux;
 	int		len;
 
-	len = stack_len(stack) - 1;
-	aux = stack[len];
-	stack[len] = stack[len - 1];
-	stack[len - 1] = aux;
-	ft_printf("s%c\n", x);
+	len = stack_len(stack_1) - 1;
+	aux = stack_1[len];
+	stack_1[len] = stack_1[len - 1];
+	stack_1[len - 1] = aux;
+	swap(stack_2, 's');
 }
 
-void	push(t_stack **stack_1, t_stack **stack_2, int max_len, char x)
-{
-	int	len_1;
-	int	len_2;
-
-	len_1 = stack_len(stack_1);
-	len_2 = stack_len(stack_2);
-	//ft_printf("%d\n", len_1);
-	//ft_printf("%d\n", len_2);
-	//ft_printf("%d\n", max_len);
-	//if (len_1 == 0)
-	//	return ;
-	//if ((len_2 + 1) > max_len)
-	//	exit(EXIT_FAILURE);
-	stack_2[len_2] = stack_1[len_1 - 1];
-	stack_1[len_1 - 1] = 0;	
-	ft_printf("p%c\n", x);
-}
-
-void	reverse_rotate(t_stack **stack, char x)
-{
-	int	len;
-	t_stack	*temp_1;
-	t_stack	*temp_2;
-
-	len = stack_len(stack) - 1;
-	//ft_printf("%d\n", len);
-	temp_1 = stack[0];
-	while (len >= 0)
-	{
-		temp_2 = stack[len];
-		stack[len] = temp_1;
-		temp_1 = stack[len - 1];
-		if (len > 0)
-			stack[len - 1] = temp_2;
-		len -= 2;
-	}
-	ft_printf("rr%c\n", x);
-}
-
-void	rotate(t_stack **stack, char x)
+void	rotate_both(t_stack **stack_1, t_stack **stack_2)
 {
 	int		len;
 	int		i;
@@ -72,18 +32,36 @@ void	rotate(t_stack **stack, char x)
 	t_stack	*temp_2;
 
 	i = 0;
-	len = stack_len(stack) - 1;
-	ft_printf("%d\n", len);
-	//ft_printf("%d\n", len);
-	temp_1 = stack[len];
+	len = stack_len(stack_1) - 1;
+	temp_1 = stack_1[len];
 	while (i <= len)
 	{
-		temp_2 = stack[i];
-		stack[i] = temp_1;
+		temp_2 = stack_1[i];
+		stack_1[i] = temp_1;
 		temp_1 = temp_2;
 		i++;
 	}
-	ft_printf("r%c\n", x);
+	rotate(stack_2, 'r');
+}
+
+void	reverse_rotate_both(t_stack **stack_1, t_stack **stack_2)
+{
+	int		len;
+	t_stack	*temp_1;
+	t_stack	*temp_2;
+
+	len = stack_len(stack_1) - 1;
+	temp_1 = stack_1[0];
+	while (len >= 0)
+	{
+		temp_2 = stack_1[len];
+		stack_1[len] = temp_1;
+		temp_1 = stack_1[len - 1];
+		if (len > 0)
+			stack_1[len - 1] = temp_2;
+		len -= 2;
+	}
+	reverse_rotate(stack_2, 'r');
 }
 
 int	main(int argc, char **argv)
@@ -94,9 +72,9 @@ int	main(int argc, char **argv)
 	int		len;
 
 	i = 0;
-	
+
 	if (argc < 2)
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	else if (argc == 2)
 	{
 		stack_1 = push_swap_split(argv);
@@ -109,12 +87,11 @@ int	main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		while (argc > 1)
 		{
+			if (is_it_a_string(argv[argc - 1]) == 1)
+				Error();
 			stack_1[i]->val = ft_atoi(argv[argc - 1]);
 			if (repeted(stack_1, i) == 1)
-			{
-				write(1, "Error\n", 6);
-				exit(EXIT_FAILURE);
-			}
+				Error();
 			i++;
 			argc--;
 		}
@@ -125,7 +102,6 @@ int	main(int argc, char **argv)
 	//write(1, "\n", 1);
 	stack_2 = create_stack_to_zero(len);
 	algorithm(stack_1, stack_2);
-	//print_stack(stack_1, 1);
 	//print_stack(stack_1, 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 13:07:14 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/11/15 18:47:20 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:01:04 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,23 @@ int	stack_len(t_stack **stack)
 		i++;
 	}
 	return (i);
+}
+
+int	is_it_a_string(char *str)
+{
+	int	i;
+
+	i = 0;
+	if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
+			i++;
+	else
+		return (1);
+	while (str[i])
+	{
+		if ((str[i] >= '0' && str[i] <= '9'))
+			i++;
+		else
+			return (1);
+	}
+	return (0);
 }

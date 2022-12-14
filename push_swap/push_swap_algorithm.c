@@ -5,144 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:48:29 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/07 17:48:29 by alvgomez         ###   ########.fr       */
+/*   Created: 2022/12/14 14:08:39 by alvgomez          #+#    #+#             */
+/*   Updated: 2022/12/14 16:30:43 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	find_moves(t_stack **stack)
+void	stack_of_3(t_stack **stack, char x)
 {
-	int	i;
-	int	len;
-
-	i = 0;
-	len = stack_len(stack);
-	while (stack[i])
+	while (is_it_in_order_1(stack) == 0)
 	{
-		if(i < (len / 2))
-			stack[i]->mov = i + 2;
-		else
-			stack[i]->mov = len - i;
-	i++;
+		if (stack[0]->val > stack[1]->val && stack[0]->val > stack[2]->val)
+			swap(stack, x);
+		else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
+			reverse_rotate(stack, x);
+		else if (stack[0]->val > stack[1]->val && stack[0]->val < stack[2]->val)
+			rotate(stack, x);
+		else if (stack[0]->val < stack[1]->val && stack[1]->val < stack[2]->val)
+		{
+			swap(stack, x);
+			reverse_rotate(stack, x);
+		}
+		else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
+		{
+			swap(stack, x);
+			rotate(stack, x);
+		}
 	}
-}
-
-int	is_it_in_order_1(t_stack **stack)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = stack_len(stack);
-	while (stack[i + 1])
-	{
-		if(stack[i]->pos < stack[i + 1]->pos)
-			return (0);
-	i++;
-	}
-	return (1);
-}
-
-int	is_it_in_order_2(t_stack **stack)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = stack_len(stack);
-	while (stack[i + 1])
-	{
-		if(stack[i]->pos > stack[i + 1]->pos)
-			return (0);
-	i++;
-	}
-	return (1);
-}
-
-int	find_lowest_pos(t_stack **stack)
-{
-	int pos;
-	int	i;
-
-	pos = stack[0]->pos;
-	//ft_printf("%d\n", pos);
-	i = 0;
-	while (stack[i])
-	{
-		if (stack[i]->pos < pos)
-			pos = stack[i]->pos;
-	i++;
-	}
-	return (pos);
-}
-
-int	find_the_position(t_stack **stack, int pos)
-{
-	int	i;
-
-	i = 0;
-	while (stack[i]->pos != pos)
-			i++;
-	return (i);
 }
 
 void	algorithm(t_stack **stack_1, t_stack **stack_2)
 {
-	int pos;
-	int a;
-	int b;
+	int	pos;
+	int	a;
+	int	b;
 
 	pos = 0;
 	while (is_it_in_order_1(stack_1) == 0 || is_it_in_order_2(stack_2) == 0)
 	{
 		//ft_printf("len = %d\n", stack_len(stack_1));
-		if (is_it_in_order_2(stack_2) == 0)
+		if (stack_len(stack_2) >= 2)
 		{
-			swap(stack_2, 'b');
-			//print_stack(stack_1, 1);
-			//print_stack(stack_2, 1);
+			if ((stack_2[stack_len(stack_2) - 1]->val
+					< stack_2[stack_len(stack_2) - 2]->val)
+				&& (stack_1[stack_len(stack_1) - 1]->val
+					> stack_1[stack_len(stack_1) - 2]->val))
+			{
+				swap_both(stack_1, stack_2);
+				//print_stack(stack_1, 1);
+				//print_stack(stack_2, 1);
+			}
+			else if (stack_2[stack_len(stack_2) - 1]->val
+				< stack_2[stack_len(stack_2) - 2]->val)
+				swap(stack_2, 'b');
 		}
 		if (stack_len(stack_1) == 3)
 		{
-			while (is_it_in_order_1(stack_1) == 0)
-			{
-				if (stack_1[0]->val > stack_1[1]->val && stack_1[0]->val > stack_1[2]->val)
-				{
-					swap(stack_1, 'a');
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);
-				}
-				else if (stack_1[0]->val < stack_1[1]->val && stack_1[1]->val > stack_1[2]->val)
-				{
-					reverse_rotate(stack_1, 'a');	
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);
-				}
-				else if (stack_1[0]->val > stack_1[1]->val && stack_1[0]->val < stack_1[2]->val)
-				{
-					rotate(stack_1, 'a');	
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);
-				}
-				else if (stack_1[0]->val < stack_1[1]->val && stack_1[1]->val < stack_1[2]->val)
-				{
-					swap(stack_1, 'a');
-					reverse_rotate(stack_1, 'a');	
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);
-				}
-				else if (stack_1[0]->val < stack_1[1]->val && stack_1[1]->val > stack_1[2]->val)
-				{
-					swap(stack_1, 'a');
-					rotate(stack_1, 'a');	
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);
-				}
-			}
+			stack_of_3(stack_1, 'a');
+			//print_stack(stack_1, 1);
+			//print_stack(stack_2, 1);
 		}
-		else if (stack_1[stack_len(stack_1) - 1]->val > stack_1[stack_len(stack_1) - 2]->val)
+		else if (stack_1[stack_len(stack_1) - 1]->val
+			> stack_1[stack_len(stack_1) - 2]->val)
 		{
 			swap(stack_1, 'a');
 			//print_stack(stack_1, 1);
@@ -153,7 +78,6 @@ void	algorithm(t_stack **stack_1, t_stack **stack_2)
 			find_moves(stack_1);
 			pos = find_lowest_pos(stack_1);
 			//ft_printf("pos = %d\n", pos);
-			//ft_printf("peoooooo\n");
 			if (pos == stack_1[stack_len(stack_1) - 1]->pos)
 			{
 				push(stack_1, stack_2, stack_len(stack_1), 'b');

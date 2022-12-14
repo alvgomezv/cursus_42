@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/13 13:55:58 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:59:31 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,12 +159,28 @@ void			reverse_rotate(t_stack **stack, char x);
 
 void			rotate(t_stack **stack, char x);
 
+void			swap_both(t_stack **stack_1, t_stack **stack_2);
+
+void			rotate_both(t_stack **stack_1, t_stack **stack_2);
+
+void			reverse_rotate_both(t_stack **stack_1, t_stack **stack_2);
+
 void			print_stack(t_stack **stack, int number);
+
+void			find_moves(t_stack **stack);
+
+int				is_it_in_order_1(t_stack **stack);
+
+int				is_it_in_order_2(t_stack **stack);
 
 int				find_lowest_pos(t_stack **stack);
 
 int				find_the_position(t_stack **stack, int pos);
 
 t_stack			**push_swap_split(char **argv);
+
+void			Error(void);
+
+int				is_it_a_string(char *str);
 
 #endif
