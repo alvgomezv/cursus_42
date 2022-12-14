@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/13 13:54:21 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:21:37 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int	main(int argc, char **argv)
 	//write(1, "\n", 1);
 	stack_2 = create_stack_to_zero(len);
 	algorithm(stack_1, stack_2);
+	//print_stack(stack_1, 1);
 	//print_stack(stack_1, 1);
 	return (0);
 }
