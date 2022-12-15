@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:44:22 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/14 11:50:06 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:32:53 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	find_positions(t_stack **stack, int len)
 		array[i] = stack[i]->val;
 		i++;
 	}
-	put_in_order(array, len);
+	put_in_order_array(array, len);
 	i = 0;
 	while (i < len)
 	{
@@ -55,7 +55,7 @@ void	find_positions(t_stack **stack, int len)
 	}
 }	
 
-void	put_in_order(int *array, int len)
+void	put_in_order_array(int *array, int len)
 {
 	int	i;
 	int	j;

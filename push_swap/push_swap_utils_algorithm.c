@@ -6,12 +6,13 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:48:29 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/14 14:08:48 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:52:46 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
+//OLD
 void	find_moves(t_stack **stack)
 {
 	int	i;
@@ -27,6 +28,11 @@ void	find_moves(t_stack **stack)
 			stack[i]->mov = len - i;
 	i++;
 	}
+}
+
+int	find_position_to_move(t_stack **stack_1, t_stack **stack_2)
+{
+	
 }
 
 int	is_it_in_order_1(t_stack **stack)
@@ -61,6 +67,7 @@ int	is_it_in_order_2(t_stack **stack)
 	return (1);
 }
 
+//OLD
 int	find_lowest_pos(t_stack **stack)
 {
 	int	pos;
@@ -77,6 +84,7 @@ int	find_lowest_pos(t_stack **stack)
 	return (pos);
 }
 
+//OLD
 int	find_the_position(t_stack **stack, int pos)
 {
 	int	i;

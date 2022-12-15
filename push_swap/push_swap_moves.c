@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:22:45 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/14 15:46:07 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:12:40 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	swap(t_stack **stack, char x)
 	ft_printf("s%c\n", x);
 }
 
-void	push(t_stack **stack_1, t_stack **stack_2, int max_len, char x)
+void	push(t_stack **stack_1, t_stack **stack_2, char x)
 {
 	int	len_1;
 	int	len_2;

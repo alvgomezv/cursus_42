@@ -1,58 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_algorithm.c                              :+:      :+:    :+:   */
+/*   OLD_push_swap_algorithm.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:08:39 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/15 17:52:35 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:13:31 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	resolve_stack_1_of_three(t_stack **stack)
+void	stack_of_3(t_stack **stack, char x)
 {
-	if (stack[0]->val > stack[1]->val && stack[0]->val > stack[2]->val)
-		swap(stack, 'a');
-	else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
-		reverse_rotate(stack, 'a');
-	else if (stack[0]->val > stack[1]->val && stack[0]->val < stack[2]->val)
-		rotate(stack, 'a');
-	else if (stack[0]->val < stack[1]->val && stack[1]->val < stack[2]->val)
+	while (is_it_in_order_1(stack) == 0)
 	{
-		swap(stack, 'a');
-		reverse_rotate(stack, 'a');
-	}
-	else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
-	{
-		swap(stack, 'a');
-		rotate(stack, 'a');
+		if (stack[0]->val > stack[1]->val && stack[0]->val > stack[2]->val)
+			swap(stack, x);
+		else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
+			reverse_rotate(stack, x);
+		else if (stack[0]->val > stack[1]->val && stack[0]->val < stack[2]->val)
+			rotate(stack, x);
+		else if (stack[0]->val < stack[1]->val && stack[1]->val < stack[2]->val)
+		{
+			swap(stack, x);
+			reverse_rotate(stack, x);
+		}
+		else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
+		{
+			swap(stack, x);
+			rotate(stack, x);
+		}
 	}
 }
 
-void	push_all_to_B_but_3(t_stack **stack_1, t_stack **stack_2)
-{
-	while (stack_1[3])
-		push(stack_1, stack_2, 'b');
-}
 
-void	algorithm(t_stack **stack_1, t_stack **stack_2)
+
+void	old_algorithm(t_stack **stack_1, t_stack **stack_2)
 {
-	int	i;
+	int	pos;
 	int	a;
 	int	b;
 
-	push_all_to_B_but_3(stack_1, stack_2);
-	resolve_stack_1_of_three(stack_1);
-	while (stack_2[0])
-	{
-		i = find_position_to_move(stack_1, stack_2);
-		
-	}
-	
-	/*while (is_it_in_order_1(stack_1) == 0 || is_it_in_order_2(stack_2) == 0)
+	pos = 0;
+	while (is_it_in_order_1(stack_1) == 0 || is_it_in_order_2(stack_2) == 0)
 	{
 		//ft_printf("len = %d\n", stack_len(stack_1));
 		if (stack_len(stack_2) >= 2)
@@ -177,5 +169,5 @@ void	algorithm(t_stack **stack_1, t_stack **stack_2)
 		push(stack_2, stack_1, 'a');
 		//print_stack(stack_1, 1);
 		//print_stack(stack_2, 1);
-	}*/	
+	}	
 }
