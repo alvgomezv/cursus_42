@@ -6,30 +6,42 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:08:39 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/15 17:52:35 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:55:12 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	resolve_stack_1_of_three(t_stack **stack)
+void	resolve_stack_1_of_three(t_stack **stack_1)
 {
-	if (stack[0]->val > stack[1]->val && stack[0]->val > stack[2]->val)
-		swap(stack, 'a');
-	else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
-		reverse_rotate(stack, 'a');
-	else if (stack[0]->val > stack[1]->val && stack[0]->val < stack[2]->val)
-		rotate(stack, 'a');
-	else if (stack[0]->val < stack[1]->val && stack[1]->val < stack[2]->val)
+	if (is_it_in_order_1 (stack_1) == 1)
+		return;
+	else if (stack_1[0]->val > stack_1[1]->val && stack_1[0]->val > stack_1[2]->val)
+		swap(stack_1, 'a');
+	else if (stack_1[0]->val < stack_1[1]->val && stack_1[1]->val > stack_1[2]->val
+			 && stack_1[0]->val < stack_1[2]->val)
+		reverse_rotate(stack_1, 'a');
+	else if (stack_1[0]->val > stack_1[1]->val && stack_1[0]->val < stack_1[2]->val 
+			&& stack_1[1]->val < stack_1[2]->val)
+		rotate(stack_1, 'a');
+	else if (stack_1[0]->val < stack_1[1]->val && stack_1[1]->val < stack_1[2]->val)
 	{
-		swap(stack, 'a');
-		reverse_rotate(stack, 'a');
+		swap(stack_1, 'a');
+		reverse_rotate(stack_1, 'a');
 	}
-	else if (stack[0]->val < stack[1]->val && stack[1]->val > stack[2]->val)
+	else if (stack_1[0]->val < stack_1[1]->val && stack_1[1]->val > stack_1[2]->val)
 	{
-		swap(stack, 'a');
-		rotate(stack, 'a');
+		swap(stack_1, 'a');
+		rotate(stack_1, 'a');
 	}
+}
+
+void	resolve_stack_1_of_two(t_stack **stack_1)
+{
+	if (is_it_in_order_1(stack_1) == 1)
+		return;
+	else
+		swap(stack_1, 'a');
 }
 
 void	push_all_to_B_but_3(t_stack **stack_1, t_stack **stack_2)
@@ -41,17 +53,24 @@ void	push_all_to_B_but_3(t_stack **stack_1, t_stack **stack_2)
 void	algorithm(t_stack **stack_1, t_stack **stack_2)
 {
 	int	i;
-	int	a;
-	int	b;
 
-	push_all_to_B_but_3(stack_1, stack_2);
-	resolve_stack_1_of_three(stack_1);
-	while (stack_2[0])
+	if (stack_len(stack_1) == 2)
+		resolve_stack_1_of_two(stack_1);
+	else if (stack_len(stack_1) == 2)
+		resolve_stack_1_of_three(stack_1);
+	else
 	{
-		i = find_position_to_move(stack_1, stack_2);
-		
+		push_all_to_B_but_3(stack_1, stack_2);
+		resolve_stack_1_of_three(stack_1);
+		while (stack_2[0])
+		{
+			i = find_the_position(stack_1, find_position_to_move(stack_1, stack_2));
+			//ft_printf("%d\n", i);
+			move_i_to_the_top(stack_1, i);
+			push(stack_2, stack_1, 'a');
+			print_stack(stack_1, 1);
+		}
 	}
-	
 	/*while (is_it_in_order_1(stack_1) == 0 || is_it_in_order_2(stack_2) == 0)
 	{
 		//ft_printf("len = %d\n", stack_len(stack_1));

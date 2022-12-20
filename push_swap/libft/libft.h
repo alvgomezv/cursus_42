@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/15 16:12:54 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:40:01 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void			find_moves(t_stack **stack);
 
 void			algorithm(t_stack **stack_1, t_stack **stack_2);
 
-void			put_in_order(int *array, int len);
+void			put_in_order_array(int *array, int len);
 
 void			swap(t_stack **stack, char x);
 
@@ -175,6 +175,8 @@ int				is_it_in_order_2(t_stack **stack);
 
 int				find_lowest_pos(t_stack **stack);
 
+int				find_highest_pos(t_stack **stack);
+
 int				find_the_position(t_stack **stack, int pos);
 
 t_stack			**push_swap_split(char **argv);
@@ -182,5 +184,9 @@ t_stack			**push_swap_split(char **argv);
 void			Error(void);
 
 int				is_it_a_string(char *str);
+
+int				find_position_to_move(t_stack **stack_1, t_stack **stack_2);
+
+void			move_i_to_the_top(t_stack **stack, int i);
 
 #endif
