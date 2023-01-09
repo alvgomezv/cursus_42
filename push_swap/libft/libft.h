@@ -165,9 +165,9 @@ void			rotate_both(t_stack **stack_1, t_stack **stack_2);
 
 void			reverse_rotate_both(t_stack **stack_1, t_stack **stack_2);
 
-void			print_stack(t_stack **stack, int number);
+void			print_stack(t_stack **stack, int number, char letter);
 
-void			find_moves(t_stack **stack);
+//void			find_moves(t_stack **stack);
 
 int				is_it_in_order_1(t_stack **stack);
 
@@ -177,7 +177,7 @@ int				find_lowest_pos(t_stack **stack);
 
 int				find_highest_pos(t_stack **stack);
 
-int				find_the_position(t_stack **stack, int pos);
+int				find_place_from_pos(t_stack **stack, int pos);
 
 t_stack			**push_swap_split(char **argv);
 
@@ -185,8 +185,10 @@ void			Error(void);
 
 int				is_it_a_string(char *str);
 
-int				find_position_to_move(t_stack **stack_1, t_stack **stack_2);
+int				which_move_3_options(t_stack **stack_1, t_stack **stack_2, int j);
 
-void			move_i_to_the_top(t_stack **stack, int i);
+void			move_place_to_the_top(t_stack **stack, int i, char x);
+
+int				how_many_moves_to_the_top_from_place(t_stack **stack, int i);
 
 #endif

@@ -87,5 +87,6 @@ t_stack	**push_swap_split(char **argv)
 			Error();
 		i++;
 	}
+	stack[i] = 0;
 	return (stack);
 }

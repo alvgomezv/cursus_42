@@ -12,8 +12,7 @@
 
 #include "./libft/libft.h"
 
-//OLD
-void	move_i_to_the_top(t_stack **stack, int i)
+void	move_place_to_the_top(t_stack **stack, int i, char x)
 {
 	int	len;
 	int value;
@@ -26,31 +25,140 @@ void	move_i_to_the_top(t_stack **stack, int i)
 	else if (i < ((len - 1) / 2))
 	{
 		while(stack[stack_len(stack) - 1]->val != value)
-			reverse_rotate(stack, 'a');
+			reverse_rotate(stack, x);
 	}
 	else
 	{
 		while(stack[stack_len(stack) - 1]->val != value)
-			rotate(stack, 'a');
+			rotate(stack, x);
 	}
 }
 
-int	find_position_to_move(t_stack **stack_1, t_stack **stack_2)
+int	how_many_moves_to_the_top_from_place(t_stack **stack, int i)
 {
-	int	pos_to_move;
-	int i;
-	
-	i = 0;
-//	if (stack_2[stack_len(stack_2) - 1]->pos > find_highest_pos(stack_1))
-	pos_to_move = find_lowest_pos(stack_1);
-	while (i < stack_len(stack_1))
+	int	len;
+	int j;
+
+	len = stack_len(stack);
+	//ft_printf("%d\n", len);
+	j = 0;
+	if (i == (len - 1))
+		return (j);
+	else if (i < ((len - 1) / 2))
 	{
-		if ((stack_2[stack_len(stack_2) - 1]->pos - stack_1[i]->pos) == 1)
-			pos_to_move = stack_1[i]->pos;
-		i++;
+		while(i >= 0)
+		{
+			i--;
+			j++;
+		}
+	}
+	else
+	{
+		while(i < (len - 1))
+		{
+			i++;
+			j++;
+		}
+	}
+	return (j);
+}
+
+int	which_move_3_options(t_stack **stack_1, t_stack **stack_2, int j)
+{
+	int i;
+	int	pos_to_move;
+	int aux;
+
+	i = 0;
+	pos_to_move = -1;
+	if (stack_2[j]->pos > find_highest_pos(stack_1))
+		pos_to_move = find_lowest_pos(stack_1);
+	else
+	{
+		while (i < stack_len(stack_1))
+		{
+			if ((stack_1[i]->pos - stack_2[j]->pos) == 1)
+				pos_to_move = stack_1[i]->pos;
+			i++;
+		}
+		i = 0;
+		if (pos_to_move < 0)
+		{
+			while (i < stack_len(stack_1))
+			{
+				if ((stack_1[i]->pos - stack_2[j]->pos) > 1)
+				{
+					pos_to_move = stack_1[i]->pos; 
+					aux = (stack_1[i]->pos - stack_2[j]->pos);
+				}
+				i++;
+			}
+			i = 0;
+			while (i < stack_len(stack_1))
+			{
+				if ((stack_1[i]->pos - stack_2[j]->pos) > 1)
+				{
+					if ((stack_1[i]->pos - stack_2[j]->pos) < aux)
+					{
+						pos_to_move = stack_1[i]->pos;
+						aux = (stack_1[i]->pos - stack_2[j]->pos);
+					}
+				}
+				i++;
+			}
+		}
 	}	
 	return(pos_to_move);
 }
+
+// algorithm that works -> only checks where to put the last one of stack_2 in stack_1
+/*int	find_pos_to_move(t_stack **stack_1, t_stack **stack_2)
+{
+	int i;
+	int	pos_to_move;
+	int aux;
+
+	i = 0;
+	pos_to_move = -1;
+	if (stack_2[stack_len(stack_2) - 1]->pos > find_highest_pos(stack_1))
+		pos_to_move = find_lowest_pos(stack_1);
+	else
+	{
+		while (i < stack_len(stack_1))
+		{
+			if ((stack_1[i]->pos - stack_2[stack_len(stack_2) - 1]->pos) == 1)
+				pos_to_move = stack_1[i]->pos;
+			i++;
+		}
+		i = 0;
+		if (pos_to_move < 0)
+		{
+			while (i < stack_len(stack_1))
+			{
+				if ((stack_1[i]->pos - stack_2[stack_len(stack_2) - 1]->pos) > 1)
+				{
+					pos_to_move = stack_1[i]->pos; 
+					aux = (stack_1[i]->pos - stack_2[stack_len(stack_2) - 1]->pos);
+				}
+				i++;
+			}
+			i = 0;
+			while (i < stack_len(stack_1))
+			{
+				if ((stack_1[i]->pos - stack_2[stack_len(stack_2) - 1]->pos) > 1)
+				{
+					if ((stack_1[i]->pos - stack_2[stack_len(stack_2) - 1]->pos) < aux)
+					{
+						pos_to_move = stack_1[i]->pos;
+						aux = (stack_1[i]->pos - stack_2[stack_len(stack_2) - 1]->pos);
+					}
+				}
+				i++;
+			}
+		}
+	}	
+	return(pos_to_move);
+}*/
 
 int	is_it_in_order_1(t_stack **stack)
 {
@@ -100,7 +208,7 @@ int	find_lowest_pos(t_stack **stack)
 	return (pos);
 }
 
-/*int	find_highest_pos(t_stack **stack)
+int	find_highest_pos(t_stack **stack)
 {
 	int	pos;
 	int	i;
@@ -114,9 +222,9 @@ int	find_lowest_pos(t_stack **stack)
 	i++;
 	}
 	return (pos);
-}*/
+}
 
-int	find_the_position(t_stack **stack, int pos)
+int	find_place_from_pos(t_stack **stack, int pos)
 {
 	int	i;
 

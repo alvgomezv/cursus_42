@@ -72,7 +72,6 @@ int	main(int argc, char **argv)
 	int		len;
 
 	i = 0;
-
 	if (argc < 2)
 		exit(EXIT_SUCCESS);
 	else if (argc == 2)
@@ -96,13 +95,13 @@ int	main(int argc, char **argv)
 			argc--;
 		}
 	}
-	print_stack(stack_1, 1);
+	stack_2 = create_stack_to_zero(stack_len(stack_1));
+		//print_stack(stack_1, 1, 'A');
+		//print_stack(stack_2, 1, 'B');
 	find_positions(stack_1, stack_len(stack_1));
-	//print_stack(stack_1, 2);
-	//write(1, "\n", 1);
-	stack_2 = create_stack_to_zero(len);
+		//write(1, "\n", 1);
 	algorithm(stack_1, stack_2);
-	print_stack(stack_1, 1);
-	print_stack(stack_2, 1);
+		//print_stack(stack_1, 1, 'A');
+		//print_stack(stack_2, 1, 'B');
 	return (0);
 }

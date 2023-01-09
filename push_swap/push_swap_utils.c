@@ -80,11 +80,12 @@ void	put_in_order_array(int *array, int len)
 	}
 }
 
-void	print_stack(t_stack **stack, int number)
+void	print_stack(t_stack **stack, int number, char letter)
 {
 	int	i;
 
 	i = 0;
+	ft_printf("%c: ", letter);
 	if (number == 1)
 	{
 		while (stack[i])

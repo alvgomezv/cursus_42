@@ -50,13 +50,96 @@ void	push_all_to_B_but_3(t_stack **stack_1, t_stack **stack_2)
 		push(stack_1, stack_2, 'b');
 }
 
+void	algorithm_stack_two_to_stack_one(t_stack **stack_1, t_stack **stack_2, int a, int b)
+{
+	int	i;
+	int	j;
+	int move_i;
+	int	move_j;
+
+	int moves_total;
+
+	j = 1;
+	while (stack_2[0])
+	{	
+		move_j = 0;
+		b = how_many_moves_to_the_top_from_place(stack_2, 0);
+			//print_stack(stack_1, 1, 'A');
+			//ft_printf("moves A: %d\n", b);
+		move_i = find_place_from_pos(stack_1, which_move_3_options(stack_1, stack_2, 0));
+		b = b + how_many_moves_to_the_top_from_place(stack_1, move_i);
+		moves_total = b;
+			//print_stack(stack_2, 1, 'B');
+			//ft_printf("moves B: %d\n", how_many_moves_to_the_top_from_place(stack_1, move_i));
+		while (j < stack_len(stack_2))
+		{
+			a = how_many_moves_to_the_top_from_place(stack_2, j);
+				//print_stack(stack_1, 1, 'A');
+				//ft_printf("moves A: %d\n", a);
+			i = find_place_from_pos(stack_1, which_move_3_options(stack_1, stack_2, j));
+			a = a + how_many_moves_to_the_top_from_place(stack_1, i);
+				//print_stack(stack_2, 1, 'B');
+				//ft_printf("moves B: %d\n", how_many_moves_to_the_top_from_place(stack_1, i));
+			if (a < b)
+			{
+				move_i = i;
+				move_j = j;
+				moves_total = a;
+			}
+			j++;
+		}
+			//print_stack(stack_1, 1, 'A');
+			//print_stack(stack_2, 1, 'B');
+			//ft_printf("final move A: %d\n", stack_1[move_i]->val);
+			//ft_printf("final move B: %d -> %d moves total\n", stack_2[move_j]->val, moves_total);
+		move_place_to_the_top(stack_1, move_i, 'a');
+			//print_stack(stack_1, 1, 'A');
+			//print_stack(stack_2, 1, 'B');
+		move_place_to_the_top(stack_2, move_j, 'b');
+			//print_stack(stack_1, 1, 'A');
+			//print_stack(stack_2, 1, 'B');
+		push(stack_2, stack_1, 'a');
+			//print_stack(stack_1, 1, 'A');
+			//print_stack(stack_2, 1, 'B');
+	}
+}
+
 void	algorithm(t_stack **stack_1, t_stack **stack_2)
+{
+	int	a;
+	int b;
+	int i;
+
+	a = 0;
+	b = 0;
+	if (stack_len(stack_1) == 2)
+		resolve_stack_1_of_two(stack_1);
+	else if (stack_len(stack_1) == 3)
+		resolve_stack_1_of_three(stack_1);
+	else
+	{
+		push_all_to_B_but_3(stack_1, stack_2);
+		//print_stack(stack_1, 1, 'A');
+		//print_stack(stack_2, 1, 'B');
+		resolve_stack_1_of_three(stack_1);
+		//print_stack(stack_1, 1, 'A');
+		//print_stack(stack_2, 1, 'B');
+		algorithm_stack_two_to_stack_one(stack_1, stack_2, a, b);
+		i = find_place_from_pos(stack_1, find_lowest_pos(stack_1));
+		move_place_to_the_top(stack_1, i, 'a');
+		//print_stack(stack_1, 1, 'A');
+		//print_stack(stack_2, 1, 'B');
+	}
+}
+
+// algorithm that works -> only checks where to put the last one of stack_2 in stack_1
+/*void	algorithm(t_stack **stack_1, t_stack **stack_2)
 {
 	int	i;
 
 	if (stack_len(stack_1) == 2)
 		resolve_stack_1_of_two(stack_1);
-	else if (stack_len(stack_1) == 2)
+	else if (stack_len(stack_1) == 3)
 		resolve_stack_1_of_three(stack_1);
 	else
 	{
@@ -64,137 +147,11 @@ void	algorithm(t_stack **stack_1, t_stack **stack_2)
 		resolve_stack_1_of_three(stack_1);
 		while (stack_2[0])
 		{
-			i = find_the_position(stack_1, find_position_to_move(stack_1, stack_2));
-			//ft_printf("%d\n", i);
-			move_i_to_the_top(stack_1, i);
+			i = find_place_from_pos(stack_1, which_move_3_options(stack_1, stack_2, (stack_len(stack_2) - 1)));
+			move_place_to_the_top(stack_1, i, 'a');
 			push(stack_2, stack_1, 'a');
-			print_stack(stack_1, 1);
 		}
+		i = find_place_from_pos(stack_1, find_lowest_pos(stack_1));
+		move_place_to_the_top(stack_1, i, 'a');
 	}
-	/*while (is_it_in_order_1(stack_1) == 0 || is_it_in_order_2(stack_2) == 0)
-	{
-		//ft_printf("len = %d\n", stack_len(stack_1));
-		if (stack_len(stack_2) >= 2)
-		{
-			if ((stack_2[stack_len(stack_2) - 1]->val
-					< stack_2[stack_len(stack_2) - 2]->val)
-				&& (stack_1[stack_len(stack_1) - 1]->val
-					> stack_1[stack_len(stack_1) - 2]->val))
-			{
-				swap_both(stack_1, stack_2);
-				//print_stack(stack_1, 1);
-				//print_stack(stack_2, 1);
-			}
-			else if (stack_2[stack_len(stack_2) - 1]->val
-				< stack_2[stack_len(stack_2) - 2]->val)
-				swap(stack_2, 'b');
-		}
-		if (stack_len(stack_1) == 3)
-		{
-			stack_of_3(stack_1, 'a');
-			//print_stack(stack_1, 1);clear
-			
-			//print_stack(stack_2, 1);
-		}
-		else if (stack_1[stack_len(stack_1) - 1]->val
-			> stack_1[stack_len(stack_1) - 2]->val)
-		{
-			swap(stack_1, 'a');
-			//print_stack(stack_1, 1);
-			//print_stack(stack_2, 1);
-		}
-		else
-		{
-			find_moves(stack_1);
-			pos = find_lowest_pos(stack_1);
-			//ft_printf("pos = %d\n", pos);
-			if (pos == stack_1[stack_len(stack_1) - 1]->pos)
-			{
-				push(stack_1, stack_2, 'b');
-				//print_stack(stack_1, 1);
-				//print_stack(stack_2, 1);		
-			}
-			else if (!stack_2[0] || pos > stack_2[stack_len(stack_2) - 1]->pos)
-			{
-				if ((pos + 1) == stack_1[stack_len(stack_1) - 1]->pos)
-				{
-					push(stack_1, stack_2, 'b');
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);			
-				}
-				else
-				{
-					a = find_the_position(stack_1, pos);
-					//ft_printf("a = %d\n", a);
-					b = find_the_position(stack_1, pos + 1);
-					//ft_printf("b = %d\n", b);
-					if (stack_1[a]->mov <= stack_1[b]->mov)
-					{
-						if ((a + 1) <= (stack_len(stack_1) / 2))
-						{
-							reverse_rotate(stack_1, 'a');
-							//ft_printf("1\n");
-							//print_stack(stack_1, 1);
-							//print_stack(stack_2, 1);
-						}
-						else
-						{
-							rotate(stack_1, 'a');
-							//ft_printf("2\n");
-							//print_stack(stack_1, 1);
-							//print_stack(stack_2, 1);
-						}
-					}
-					else
-					{
-						if ((b + 1) <= (stack_len(stack_1) / 2))
-						{
-							reverse_rotate(stack_1, 'a');
-							//ft_printf("3\n");
-							//print_stack(stack_1, 1);
-							//print_stack(stack_2, 1);
-						}
-						else
-						{
-							rotate(stack_1, 'a');
-							//ft_printf("4\n");
-							//print_stack(stack_1, 1);
-							//print_stack(stack_2, 1);
-						}
-					}
-				}
-			}
-			else
-			{
-				a = find_the_position(stack_1, pos);
-				//ft_printf("a = %d\n", a);
-				if ((a + 1) <= (stack_len(stack_1) / 2))
-				{
-					reverse_rotate(stack_1, 'a');
-					//ft_printf("5\n");
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);
-				}
-				else
-				{
-					rotate(stack_1, 'a');
-					//ft_printf("6\n");
-					//print_stack(stack_1, 1);
-					//print_stack(stack_2, 1);
-				}
-			}
-		}
-	}
-	while (stack_2[0])
-	{
-		if (is_it_in_order_1(stack_1) == 0)
-		{
-			swap(stack_1, 'a');
-			//print_stack(stack_1, 1);
-			//print_stack(stack_2, 1);
-		}
-		push(stack_2, stack_1, 'a');
-		//print_stack(stack_1, 1);
-		//print_stack(stack_2, 1);
-	}*/	
-}
+}*/
