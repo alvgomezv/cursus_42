@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:44:22 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/15 16:32:53 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:25:35 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,31 +89,22 @@ void	print_stack(t_stack **stack, int number, char letter)
 	if (number == 1)
 	{
 		while (stack[i])
-		{
-			ft_printf("%d ", stack[i]->val);
-			i++;
-		}
+			ft_printf("%d ", stack[i++]->val);
 	}
 	if (number == 2)
 	{
 		while (stack[i])
-		{
-			ft_printf("%d ", stack[i]->pos);
-			i++;
-		}
+			ft_printf("%d ", stack[i++]->pos);
 	}
 	if (number == 3)
 	{
 		while (stack[i])
-		{
-			ft_printf("%d ", stack[i]->mov);
-			i++;
-		}
+			ft_printf("%d ", stack[i++]->mov);
 	}
 	write(1, "\n", 1);
 }
 
-void	Error(void)
+void	there_is_an_error(void)
 {
 	write(1, "Error\n", 6);
 	exit(EXIT_FAILURE);

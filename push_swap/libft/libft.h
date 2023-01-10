@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/20 20:40:01 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:13:30 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_stack
 {
 	int	val;
 	int	pos;
-	int mov;
+	int	mov;
 }				t_stack;
 
 typedef struct s_list
@@ -181,14 +181,51 @@ int				find_place_from_pos(t_stack **stack, int pos);
 
 t_stack			**push_swap_split(char **argv);
 
-void			Error(void);
+void			there_is_an_error(void);
 
 int				is_it_a_string(char *str);
 
-int				which_move_3_options(t_stack **stack_1, t_stack **stack_2, int j);
+int				which_move_3_options(t_stack **stack_1,
+					t_stack **stack_2, int j);
 
 void			move_place_to_the_top(t_stack **stack, int i, char x);
 
+void			move_both_places_to_the_top(t_stack **stack_1,
+					t_stack **stack_2, int i, int j);
+
 int				how_many_moves_to_the_top_from_place(t_stack **stack, int i);
+
+void			push_all_to_B_but_3_smallest_half_first(t_stack **stack_1,
+					t_stack **stack_2);
+
+void			aux_algorithm(t_stack **stack_1,
+					t_stack **stack_2, int *move_i, int *move_j);
+
+void			aux_main(t_stack **stack_1, char **argv, int argc);
+
+void			resolve_stack_1_of_three(t_stack **stack_1);
+
+void			resolve_stack_1_of_two(t_stack **stack_1);
+
+void			push_all_to_b_but_3_smallest_half_first(t_stack **stack_1,
+					t_stack **stack_2);
+
+void			algorithm_stack_two_to_stack_one(t_stack **stack_1,
+					t_stack **stack_2, int move_i, int move_j);
+
+void			aux_algorithm(t_stack **stack_1,
+					t_stack **stack_2, int *move_i, int *move_j);
+
+void			aux_move_1(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
+
+void			aux_move_2(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
+
+void			aux_move_3(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
+
+void			aux_move_4(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
 
 #endif

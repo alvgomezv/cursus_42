@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_moves.c                                  :+:      :+:    :+:   */
+/*   push_swap_moves_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:22:45 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/15 16:12:40 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:12:02 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,25 @@ void	reverse_rotate(t_stack **stack, char x)
 		len -= 2;
 	}
 	ft_printf("rr%c\n", x);
+}
+
+void	move_place_to_the_top(t_stack **stack, int i, char x)
+{
+	int	len;
+	int	value;
+
+	len = stack_len(stack);
+	value = stack[i]->val;
+	if (i == (len - 1))
+		return ;
+	else if (i < ((len - 1) / 2))
+	{
+		while (stack[stack_len(stack) - 1]->val != value)
+			reverse_rotate(stack, x);
+	}
+	else
+	{
+		while (stack[stack_len(stack) - 1]->val != value)
+			rotate(stack, x);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:18:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/12/14 13:50:03 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:26:41 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static int	number_count(char *s)
 				|| *s == '-')
 				number_count++;
 			else
-				Error();
+				there_is_an_error();
 			s++;
 			while (*s && *s != ' ')
 			{
 				if (*s >= '0' && *s <= '9')
 					s++;
 				else
-					Error();
+					there_is_an_error();
 			}
 		}
 	}
@@ -74,17 +74,15 @@ t_stack	**push_swap_split(char **argv)
 
 	i = 0;
 	nb_count = number_count(argv[1]);
-	//ft_printf("%d\n", nb_count);
 	stack = create_stack(nb_count);
 	if (stack == 0)
 		exit(EXIT_FAILURE);
 	array = fill_array(argv[1], nb_count, stack);
-	//ft_printf("%d\n", nb_count);
 	while (i < nb_count)
 	{
 		stack[i]->val = array[i];
 		if (repeted(stack, i) == 1)
-			Error();
+			there_is_an_error();
 		i++;
 	}
 	stack[i] = 0;
