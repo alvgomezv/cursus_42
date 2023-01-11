@@ -6,41 +6,20 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2023/01/11 20:20:17 by alvgomez         ###   ########.fr        #
+#    Updated: 2023/01/11 20:03:09 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFT = ./libft/libft.a
 NAME = push_swap
-BONUS = checker
-SRCS = push_swap.c \
-	push_swap_utils.c \
-	push_swap_stack.c \
-	push_swap_algorithm.c \
-	push_swap_utils_algorithm_1.c \
-	push_swap_utils_algorithm_2.c \
-	push_swap_split.c \
-	push_swap_moves_1.c \
-	push_swap_moves_2.c \
-	push_swap_moves_3.c \
-	
-SRCS_BONUS = checker.c \
-	push_swap_utils.c \
-	push_swap_stack.c \
-	push_swap_algorithm.c \
-	push_swap_utils_algorithm_1.c \
-	push_swap_utils_algorithm_2.c \
-	push_swap_split.c \
-	push_swap_moves_1.c \
-	push_swap_moves_2.c \
-	push_swap_moves_3.c \
-	
+#BONUS = push_swap_bonus 
+SRCS = push_swap.c push_swap_utils.c push_swap_stack.c push_swap_algorithm.c push_swap_utils_algorithm.c push_swap_split.c push_swap_moves.c
+#SRCS_BONUS = push_swap_bonus.c 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
 OBJS = ${SRCS:.c=.o}
-
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
+#OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 all:	${NAME}
 		 
@@ -50,19 +29,19 @@ ${NAME}:	${LIBFT} ${OBJS}
 ${LIBFT}:
 		${MAKE} -C libft all
 
-${BONUS}:	${LIBFT} ${OBJS_BONUS} 
-		${CC}  ${FLAGS} ${OBJS_BONUS} ${LIBFT} -o ${BONUS}
+#${BONUS}:	${LIBFT} ${OBJS_BONUS} 
+#		${CC}  ${FLAGS} ${OBJS_BONUS} ${LIBFT} -o ${BONUS}
 
-bonus:	${BONUS} 
+#bonus:	${BONUS} 
 
 clean:	
 		@rm -f ${OBJS}
-		@rm -f ${OBJS_BONUS}
+#		@rm -f ${OBJS_BONUS}
 		@${MAKE} -C libft clean
 
 fclean:	clean
 		@rm -f ${NAME}
-		@rm -f ${BONUS}
+#		@rm -f ${BONUS}
 		@${MAKE} -C libft fclean
 
 re: fclean all

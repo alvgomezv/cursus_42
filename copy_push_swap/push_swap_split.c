@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:18:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/11 20:18:32 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:50:03 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@ static int	number_count(char *s)
 				|| *s == '-')
 				number_count++;
 			else
-				there_is_an_error();
+				Error();
 			s++;
 			while (*s && *s != ' ')
 			{
 				if (*s >= '0' && *s <= '9')
 					s++;
 				else
-					there_is_an_error();
+					Error();
 			}
 		}
 	}
 	return (number_count);
 }
 
-int	*fill_array(char *argv, int nb_count)
+int	*fill_array(char *argv, int nb_count, t_stack **stack)
 {
 	int	*array;
 
@@ -73,20 +73,18 @@ t_stack	**push_swap_split(char **argv)
 	int		*array;
 
 	i = 0;
-	if (!argv[1][0])
-		exit (EXIT_SUCCESS);
 	nb_count = number_count(argv[1]);
-	if (nb_count == 0)
-		there_is_an_error();
+	//ft_printf("%d\n", nb_count);
 	stack = create_stack(nb_count);
 	if (stack == 0)
 		exit(EXIT_FAILURE);
-	array = fill_array(argv[1], nb_count);
+	array = fill_array(argv[1], nb_count, stack);
+	//ft_printf("%d\n", nb_count);
 	while (i < nb_count)
 	{
 		stack[i]->val = array[i];
 		if (repeted(stack, i) == 1)
-			there_is_an_error();
+			Error();
 		i++;
 	}
 	stack[i] = 0;

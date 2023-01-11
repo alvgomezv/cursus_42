@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:48:29 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 16:35:40 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:17:31 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,52 @@ int	how_many_moves_to_the_top_from_place(t_stack **stack, int i)
 	return (j);
 }
 
+int	aux_which_move_3_options_1(t_stack **stack_1,
+		t_stack **stack_2, int pos_to_move, int j)
+{
+	int	i;
+	int	aux;
+
+	pos_to_move = -1;
+	i = 0;
+	while (i < stack_len(stack_1))
+	{
+		if ((stack_1[i]->pos - stack_2[j]->pos) > 1)
+		{
+			pos_to_move = stack_1[i]->pos;
+			aux = (stack_1[i]->pos - stack_2[j]->pos);
+		}
+		i++;
+	}
+	return (pos_to_move);
+}
+
+int	aux_which_move_3_options_2(t_stack **stack_1,
+		t_stack **stack_2, int pos_to_move, int j)
+{
+	int	i;
+	int	aux;
+
+	i = 0;
+	while (i < stack_len(stack_1))
+	{
+		if ((stack_1[i]->pos - stack_2[j]->pos) > 1)
+		{
+			if ((stack_1[i]->pos - stack_2[j]->pos) < aux)
+			{
+				pos_to_move = stack_1[i]->pos;
+				aux = (stack_1[i]->pos - stack_2[j]->pos);
+			}
+		}
+		i++;
+	}
+	return (pos_to_move);
+}
+
 int	which_move_3_options(t_stack **stack_1, t_stack **stack_2, int j)
 {
 	int	i;
 	int	pos_to_move;
-	int	aux;
 
 	i = 0;
 	pos_to_move = -1;
@@ -58,32 +99,13 @@ int	which_move_3_options(t_stack **stack_1, t_stack **stack_2, int j)
 				pos_to_move = stack_1[i]->pos;
 			i++;
 		}
-		i = 0;
 		if (pos_to_move < 0)
 		{
-			while (i < stack_len(stack_1))
-			{
-				if ((stack_1[i]->pos - stack_2[j]->pos) > 1)
-				{
-					pos_to_move = stack_1[i]->pos;
-					aux = (stack_1[i]->pos - stack_2[j]->pos);
-				}
-				i++;
-			}
-			i = 0;
-			while (i < stack_len(stack_1))
-			{
-				if ((stack_1[i]->pos - stack_2[j]->pos) > 1)
-				{
-					if ((stack_1[i]->pos - stack_2[j]->pos) < aux)
-					{
-						pos_to_move = stack_1[i]->pos;
-						aux = (stack_1[i]->pos - stack_2[j]->pos);
-					}
-				}
-				i++;
-			}
+			pos_to_move = aux_which_move_3_options_1(stack_1, stack_2,
+					pos_to_move, j);
+			pos_to_move = aux_which_move_3_options_2(stack_1, stack_2,
+					pos_to_move, j);
 		}
-	}	
+	}
 	return (pos_to_move);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/11 18:37:42 by alvgomez         ###   ########.fr       */
+/*   Created: 2023/01/11 19:19:22 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/01/11 20:38:20 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	main(int argc, char **argv)
 	}
 	stack_2 = create_stack_to_zero(stack_len(stack_1));
 	find_positions(stack_1, stack_len(stack_1));
-	algorithm(stack_1, stack_2);
+	//print_stack(stack_1, 1, 'A');
+	//print_stack(stack_1, 2, 'A');
 }
 
 void	aux_main(t_stack **stack_1, char **argv, int argc)
@@ -50,26 +51,8 @@ void	aux_main(t_stack **stack_1, char **argv, int argc)
 	}
 }
 
-void	algorithm(t_stack **stack_1, t_stack **stack_2)
+void	program(t_stack **stack_1, t_stack **stack_2)
 {
-	int	a;
-	int	b;
-	int	i;
-
-	a = 0;
-	b = 0;
-	if (stack_len(stack_1) < 2)
-		exit (EXIT_SUCCESS);
-	if (stack_len(stack_1) == 2)
-		resolve_stack_1_of_two(stack_1);
-	else if (stack_len(stack_1) == 3)
-		resolve_stack_1_of_three(stack_1);
-	else
-	{
-		push_all_to_b_but_3_smallest_half_first(stack_1, stack_2);
-		resolve_stack_1_of_three(stack_1);
-		algorithm_stack_two_to_stack_one(stack_1, stack_2, a, b);
-		i = find_place_from_pos(stack_1, find_lowest_pos(stack_1));
-		move_place_to_the_top(stack_1, i, 'a');
-	}
+	read(0, );
+	//lectura bit a bit de la entrada estandar y ir modificando con realoc
 }
