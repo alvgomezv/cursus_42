@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:31:12 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 19:13:40 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:07:29 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,29 @@ void	aux_move_1(t_stack **stack_1,
 {
 	while (stack_1[stack_len(stack_1) - 1]->val != value_1
 		&& stack_2[stack_len(stack_2) - 1]->val != value_2)
-		reverse_rotate_both(stack_1, stack_2);
+		reverse_rotate_both(stack_1, stack_2, 1);
 	while (stack_1[stack_len(stack_1) - 1]->val != value_1)
-		reverse_rotate(stack_1, 'a');
+		reverse_rotate(stack_1, 'a', 1);
 	while (stack_2[stack_len(stack_2) - 1]->val != value_2)
-		reverse_rotate(stack_2, 'b');
+		reverse_rotate(stack_2, 'b', 1);
 }
 
 void	aux_move_2(t_stack **stack_1,
 			t_stack **stack_2, int value_1, int value_2)
 {
 	while (stack_1[stack_len(stack_1) - 1]->val != value_1)
-		reverse_rotate(stack_1, 'a');
+		reverse_rotate(stack_1, 'a', 1);
 	while (stack_2[stack_len(stack_2) - 1]->val != value_2)
-		rotate(stack_2, 'b');
+		rotate(stack_2, 'b', 1);
 }
 
 void	aux_move_3(t_stack **stack_1,
 			t_stack **stack_2, int value_1, int value_2)
 {
 	while (stack_1[stack_len(stack_1) - 1]->val != value_1)
-		rotate(stack_1, 'a');
+		rotate(stack_1, 'a', 1);
 	while (stack_2[stack_len(stack_2) - 1]->val != value_2)
-		reverse_rotate(stack_2, 'b');
+		reverse_rotate(stack_2, 'b', 1);
 }
 
 void	aux_move_4(t_stack **stack_1,
@@ -73,9 +73,9 @@ void	aux_move_4(t_stack **stack_1,
 {
 	while (stack_1[stack_len(stack_1) - 1]->val != value_1
 		&& stack_2[stack_len(stack_2) - 1]->val != value_2)
-		rotate_both(stack_1, stack_2);
+		rotate_both(stack_1, stack_2, 1);
 	while (stack_1[stack_len(stack_1) - 1]->val != value_1)
-		rotate(stack_1, 'a');
+		rotate(stack_1, 'a', 1);
 	while (stack_2[stack_len(stack_2) - 1]->val != value_2)
-		rotate(stack_2, 'b');
+		rotate(stack_2, 'b', 1);
 }

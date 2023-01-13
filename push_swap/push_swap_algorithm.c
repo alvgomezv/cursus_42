@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:08:39 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 17:50:22 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:06:44 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@ void	resolve_stack_1_of_three(t_stack **stack_1)
 		return ;
 	else if (stack_1[0]->val > stack_1[1]->val
 		&& stack_1[0]->val > stack_1[2]->val)
-		swap(stack_1, 'a');
+		swap(stack_1, 'a', 1);
 	else if (stack_1[0]->val < stack_1[1]->val
 		&& stack_1[1]->val > stack_1[2]->val
 		&& stack_1[0]->val < stack_1[2]->val)
-		reverse_rotate(stack_1, 'a');
+		reverse_rotate(stack_1, 'a', 1);
 	else if (stack_1[0]->val > stack_1[1]->val
 		&& stack_1[0]->val < stack_1[2]->val
 		&& stack_1[1]->val < stack_1[2]->val)
-		rotate(stack_1, 'a');
+		rotate(stack_1, 'a', 1);
 	else if (stack_1[0]->val < stack_1[1]->val
 		&& stack_1[1]->val < stack_1[2]->val)
 	{
-		swap(stack_1, 'a');
-		reverse_rotate(stack_1, 'a');
+		swap(stack_1, 'a', 1);
+		reverse_rotate(stack_1, 'a', 1);
 	}
 	else if (stack_1[0]->val < stack_1[1]->val
 		&& stack_1[1]->val > stack_1[2]->val)
 	{
-		swap(stack_1, 'a');
-		rotate(stack_1, 'a');
+		swap(stack_1, 'a', 1);
+		rotate(stack_1, 'a', 1);
 	}
 }
 
@@ -46,7 +46,7 @@ void	resolve_stack_1_of_two(t_stack **stack_1)
 	if (is_it_in_order_1(stack_1) == 1)
 		return ;
 	else
-		swap(stack_1, 'a');
+		swap(stack_1, 'a', 1);
 }
 
 void	push_all_to_b_but_3_smallest_half_first(t_stack **stack_1,
@@ -61,14 +61,14 @@ void	push_all_to_b_but_3_smallest_half_first(t_stack **stack_1,
 	{
 		if (stack_1[stack_len(stack_1) - 1]->pos <= (len / 2))
 		{
-			push(stack_1, stack_2, 'b');
+			push(stack_1, stack_2, 'b', 1);
 			i++;
 		}
 		else
-			rotate (stack_1, 'a');
+			rotate (stack_1, 'a', 1);
 	}
 	while (stack_1[3])
-		push(stack_1, stack_2, 'b');
+		push(stack_1, stack_2, 'b', 1);
 }
 
 void	algorithm_stack_two_to_stack_one(t_stack **stack_1,
@@ -83,7 +83,7 @@ void	algorithm_stack_two_to_stack_one(t_stack **stack_1,
 	{	
 		aux_algorithm(stack_1, stack_2, i, j);
 		move_both_places_to_the_top(stack_1, stack_2, move_i, move_j);
-		push(stack_2, stack_1, 'a');
+		push(stack_2, stack_1, 'a', 1);
 	}
 }
 

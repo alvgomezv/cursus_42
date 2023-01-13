@@ -6,13 +6,13 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:14:17 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 16:33:29 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:04:19 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	swap_both(t_stack **stack_1, t_stack **stack_2)
+void	swap_both(t_stack **stack_1, t_stack **stack_2, int write)
 {
 	t_stack	*aux;
 	int		len;
@@ -21,10 +21,10 @@ void	swap_both(t_stack **stack_1, t_stack **stack_2)
 	aux = stack_1[len];
 	stack_1[len] = stack_1[len - 1];
 	stack_1[len - 1] = aux;
-	swap(stack_2, 's');
+	swap(stack_2, 's', write);
 }
 
-void	rotate_both(t_stack **stack_1, t_stack **stack_2)
+void	rotate_both(t_stack **stack_1, t_stack **stack_2, int write)
 {
 	int		len;
 	int		i;
@@ -41,10 +41,10 @@ void	rotate_both(t_stack **stack_1, t_stack **stack_2)
 		temp_1 = temp_2;
 		i++;
 	}
-	rotate(stack_2, 'r');
+	rotate(stack_2, 'r', write);
 }
 
-void	reverse_rotate_both(t_stack **stack_1, t_stack **stack_2)
+void	reverse_rotate_both(t_stack **stack_1, t_stack **stack_2, int write)
 {
 	int		len;
 	t_stack	*temp_1;
@@ -61,7 +61,7 @@ void	reverse_rotate_both(t_stack **stack_1, t_stack **stack_2)
 			stack_1[len - 1] = temp_2;
 		len -= 2;
 	}
-	reverse_rotate(stack_2, 'r');
+	reverse_rotate(stack_2, 'r', write);
 }
 
 int	is_it_in_order_1(t_stack **stack)

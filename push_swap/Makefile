@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2023/01/11 20:20:17 by alvgomez         ###   ########.fr        #
+#    Updated: 2023/01/13 12:21:54 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = push_swap.c \
 	push_swap_moves_3.c \
 	
 SRCS_BONUS = checker.c \
+	checker_utils.c \
 	push_swap_utils.c \
 	push_swap_stack.c \
 	push_swap_algorithm.c \

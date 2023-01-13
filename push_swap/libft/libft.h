@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 19:13:30 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:35:52 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,29 +145,26 @@ int				repeted(t_stack **stack, int pos);
 
 void			find_positions(t_stack **stack, int len);
 
-void			find_moves(t_stack **stack);
-
 void			algorithm(t_stack **stack_1, t_stack **stack_2);
 
 void			put_in_order_array(int *array, int len);
 
-void			swap(t_stack **stack, char x);
+void			swap(t_stack **stack, char x, int write);
 
-void			push(t_stack **stack_1, t_stack **stack_2, char x);
+void			push(t_stack **stack_1, t_stack **stack_2, char x, int write);
 
-void			reverse_rotate(t_stack **stack, char x);
+void			reverse_rotate(t_stack **stack, char x, int write);
 
-void			rotate(t_stack **stack, char x);
+void			rotate(t_stack **stack, char x, int write);
 
-void			swap_both(t_stack **stack_1, t_stack **stack_2);
+void			swap_both(t_stack **stack_1, t_stack **stack_2, int write);
 
-void			rotate_both(t_stack **stack_1, t_stack **stack_2);
+void			rotate_both(t_stack **stack_1, t_stack **stack_2, int write);
 
-void			reverse_rotate_both(t_stack **stack_1, t_stack **stack_2);
+void			reverse_rotate_both(t_stack **stack_1,
+					t_stack **stack_2, int write);
 
 void			print_stack(t_stack **stack, int number, char letter);
-
-//void			find_moves(t_stack **stack);
 
 int				is_it_in_order_1(t_stack **stack);
 
@@ -227,5 +224,7 @@ void			aux_move_3(t_stack **stack_1,
 
 void			aux_move_4(t_stack **stack_1,
 					t_stack **stack_2, int value_1, int value_2);
+
+char			*read_std_imput(void);
 
 #endif

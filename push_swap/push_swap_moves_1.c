@@ -6,13 +6,13 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:22:45 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 19:12:02 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:08:56 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-void	swap(t_stack **stack, char x)
+void	swap(t_stack **stack, char x, int write)
 {
 	t_stack	*aux;
 	int		len;
@@ -21,10 +21,11 @@ void	swap(t_stack **stack, char x)
 	aux = stack[len];
 	stack[len] = stack[len - 1];
 	stack[len - 1] = aux;
-	ft_printf("s%c\n", x);
+	if (write == 1)
+		ft_printf("s%c\n", x);
 }
 
-void	push(t_stack **stack_1, t_stack **stack_2, char x)
+void	push(t_stack **stack_1, t_stack **stack_2, char x, int write)
 {
 	int	len_1;
 	int	len_2;
@@ -33,10 +34,11 @@ void	push(t_stack **stack_1, t_stack **stack_2, char x)
 	len_2 = stack_len(stack_2);
 	stack_2[len_2] = stack_1[len_1 - 1];
 	stack_1[len_1 - 1] = 0;
-	ft_printf("p%c\n", x);
+	if (write == 1)
+		ft_printf("p%c\n", x);
 }
 
-void	rotate(t_stack **stack, char x)
+void	rotate(t_stack **stack, char x, int write)
 {
 	int		len;
 	int		i;
@@ -53,10 +55,11 @@ void	rotate(t_stack **stack, char x)
 		temp_1 = temp_2;
 		i++;
 	}
-	ft_printf("r%c\n", x);
+	if (write == 1)
+		ft_printf("r%c\n", x);
 }
 
-void	reverse_rotate(t_stack **stack, char x)
+void	reverse_rotate(t_stack **stack, char x, int write)
 {
 	int		len;
 	t_stack	*temp_1;
@@ -73,7 +76,8 @@ void	reverse_rotate(t_stack **stack, char x)
 			stack[len - 1] = temp_2;
 		len -= 2;
 	}
-	ft_printf("rr%c\n", x);
+	if (write == 1)
+		ft_printf("rr%c\n", x);
 }
 
 void	move_place_to_the_top(t_stack **stack, int i, char x)
@@ -88,11 +92,11 @@ void	move_place_to_the_top(t_stack **stack, int i, char x)
 	else if (i < ((len - 1) / 2))
 	{
 		while (stack[stack_len(stack) - 1]->val != value)
-			reverse_rotate(stack, x);
+			reverse_rotate(stack, x, 1);
 	}
 	else
 	{
 		while (stack[stack_len(stack) - 1]->val != value)
-			rotate(stack, x);
+			rotate(stack, x, 1);
 	}
 }
