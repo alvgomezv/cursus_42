@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/13 12:35:52 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:19:39 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				ft_toupper(int c);
 
 char			**ft_split(char const *s, char c);
 
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin(char *s1, char *s2);
 
 char			*ft_strtrim(char const *s1, char const *set);
 
@@ -143,7 +143,7 @@ int				stack_len(t_stack **stack);
 
 int				repeted(t_stack **stack, int pos);
 
-void			find_positions(t_stack **stack, int len);
+void			find_positions(t_stack **stack, int len, int i);
 
 void			algorithm(t_stack **stack_1, t_stack **stack_2);
 
@@ -226,5 +226,9 @@ void			aux_move_4(t_stack **stack_1,
 					t_stack **stack_2, int value_1, int value_2);
 
 char			*read_std_imput(void);
+
+void			ft_free_push_swap(t_stack **stack);
+
+void			ft_free_all(t_stack **stack_1, t_stack **stack_2, char *imput);
 
 #endif

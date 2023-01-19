@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:48:29 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/11 20:17:31 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:32:42 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,10 @@ int	which_move_3_options(t_stack **stack_1, t_stack **stack_2, int j)
 		}
 	}
 	return (pos_to_move);
+}
+
+void	there_is_an_error(void)
+{
+	write(1, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }

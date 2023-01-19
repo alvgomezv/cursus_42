@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:18:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/11 20:18:32 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:20:10 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ t_stack	**push_swap_split(char **argv)
 		i++;
 	}
 	stack[i] = 0;
+	free(array);
 	return (stack);
 }

@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:12:04 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 11:26:01 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:19:05 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		a;
 	int		b;
@@ -25,8 +25,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	a = ft_strlen(s1);
 	b = ft_strlen(s2) + a;
 	str = (char *)malloc((b + 1) * sizeof(char));
-	if (str == 0)
-		return (0);
 	while (i < a)
 	{
 		str[i] = s1[i];
@@ -40,5 +38,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		a++;
 	}
 	str[i] = '\0';
+	free(s1);
 	return (str);
 }

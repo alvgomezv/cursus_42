@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:19:22 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/13 12:29:54 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:21:22 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,12 @@ int	main(int argc, char **argv)
 		aux_main(stack_1, argv, argc);
 	}
 	stack_2 = create_stack_to_zero(stack_len(stack_1));
-	find_positions(stack_1, stack_len(stack_1));
+	find_positions(stack_1, stack_len(stack_1), 0);
 	imput = read_std_imput();
 	program(stack_1, stack_2, imput);
 	if (is_it_in_order_1(stack_1) == 1 && !stack_2[0])
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	ft_free_all(stack_1, stack_2, imput);
 }

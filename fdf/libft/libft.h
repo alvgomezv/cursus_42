@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:23:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 13:29:08 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:28:37 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_stack
 {
 	int	val;
 	int	pos;
-	int mov;
+	int	mov;
 }				t_stack;
 
 typedef struct s_list
@@ -143,31 +143,28 @@ int				stack_len(t_stack **stack);
 
 int				repeted(t_stack **stack, int pos);
 
-void			find_positions(t_stack **stack, int len);
-
-void			find_moves(t_stack **stack);
+void			find_positions(t_stack **stack, int len, int i);
 
 void			algorithm(t_stack **stack_1, t_stack **stack_2);
 
 void			put_in_order_array(int *array, int len);
 
-void			swap(t_stack **stack, char x);
+void			swap(t_stack **stack, char x, int write);
 
-void			push(t_stack **stack_1, t_stack **stack_2, char x);
+void			push(t_stack **stack_1, t_stack **stack_2, char x, int write);
 
-void			reverse_rotate(t_stack **stack, char x);
+void			reverse_rotate(t_stack **stack, char x, int write);
 
-void			rotate(t_stack **stack, char x);
+void			rotate(t_stack **stack, char x, int write);
 
-void			swap_both(t_stack **stack_1, t_stack **stack_2);
+void			swap_both(t_stack **stack_1, t_stack **stack_2, int write);
 
-void			rotate_both(t_stack **stack_1, t_stack **stack_2);
+void			rotate_both(t_stack **stack_1, t_stack **stack_2, int write);
 
-void			reverse_rotate_both(t_stack **stack_1, t_stack **stack_2);
+void			reverse_rotate_both(t_stack **stack_1,
+					t_stack **stack_2, int write);
 
 void			print_stack(t_stack **stack, int number, char letter);
-
-//void			find_moves(t_stack **stack);
 
 int				is_it_in_order_1(t_stack **stack);
 
@@ -181,18 +178,57 @@ int				find_place_from_pos(t_stack **stack, int pos);
 
 t_stack			**push_swap_split(char **argv);
 
-void			Error(void);
+void			there_is_an_error(void);
 
 int				is_it_a_string(char *str);
 
-int				which_move_3_options(t_stack **stack_1, t_stack **stack_2, int j);
+int				which_move_3_options(t_stack **stack_1,
+					t_stack **stack_2, int j);
 
 void			move_place_to_the_top(t_stack **stack, int i, char x);
 
-void			move_both_places_to_the_top(t_stack **stack_1, t_stack **stack_2, int i, int j);
+void			move_both_places_to_the_top(t_stack **stack_1,
+					t_stack **stack_2, int i, int j);
 
 int				how_many_moves_to_the_top_from_place(t_stack **stack, int i);
 
-void			push_all_to_B_but_3_smallest_half_first(t_stack **stack_1, t_stack **stack_2);
+void			push_all_to_B_but_3_smallest_half_first(t_stack **stack_1,
+					t_stack **stack_2);
+
+void			aux_algorithm(t_stack **stack_1,
+					t_stack **stack_2, int *move_i, int *move_j);
+
+void			aux_main(t_stack **stack_1, char **argv, int argc);
+
+void			resolve_stack_1_of_three(t_stack **stack_1);
+
+void			resolve_stack_1_of_two(t_stack **stack_1);
+
+void			push_all_to_b_but_3_smallest_half_first(t_stack **stack_1,
+					t_stack **stack_2);
+
+void			algorithm_stack_two_to_stack_one(t_stack **stack_1,
+					t_stack **stack_2, int move_i, int move_j);
+
+void			aux_algorithm(t_stack **stack_1,
+					t_stack **stack_2, int *move_i, int *move_j);
+
+void			aux_move_1(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
+
+void			aux_move_2(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
+
+void			aux_move_3(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
+
+void			aux_move_4(t_stack **stack_1,
+					t_stack **stack_2, int value_1, int value_2);
+
+char			*read_std_imput(void);
+
+void			ft_free_push_swap(t_stack **stack);
+
+void			ft_free_all(t_stack **stack_1, t_stack **stack_2, char *imput);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:44:22 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/10 16:25:35 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:21:57 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ int	repeted(t_stack **stack, int pos)
 	return (0);
 }
 
-void	find_positions(t_stack **stack, int len)
+void	find_positions(t_stack **stack, int len, int i)
 {
 	int	*array;
-	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	array = (int *)malloc(sizeof(int) * len);
 	while (stack[i])
@@ -53,6 +51,7 @@ void	find_positions(t_stack **stack, int len)
 	j = 0;
 	i++;
 	}
+	free(array);
 }	
 
 void	put_in_order_array(int *array, int len)
@@ -104,8 +103,15 @@ void	print_stack(t_stack **stack, int number, char letter)
 	write(1, "\n", 1);
 }
 
-void	there_is_an_error(void)
+void	ft_free_push_swap(t_stack **stack)
 {
-	write(1, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	int		i;
+
+	i = 0;
+	while (stack[i])
+	{
+		free(stack[i]);
+		i++;
+	}
+	free(stack);
 }

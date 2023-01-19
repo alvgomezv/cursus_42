@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 12:21:31 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/13 12:31:35 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:27:11 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,13 @@ char	*read_std_imput(void)
 		str = ft_strjoin(str, buff);
 		bytes_read = read(0, buff, 1);
 	}
+	free(buff);
 	return (str);
+}
+
+void	ft_free_all(t_stack **stack_1, t_stack **stack_2, char *imput)
+{
+	free(imput);
+	ft_free_push_swap(stack_1);
+	ft_free_push_swap(stack_2);
 }

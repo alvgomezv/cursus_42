@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/13 12:50:50 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:21:28 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int	main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		aux_main(stack_1, argv, argc);
 	}
-	find_positions(stack_1, stack_len(stack_1));
+	find_positions(stack_1, stack_len(stack_1), 0);
 	if (is_it_in_order_1(stack_1) == 0)
 	{
 		stack_2 = create_stack_to_zero(stack_len(stack_1));
 		algorithm(stack_1, stack_2);
+		free(stack_2);
 	}
+	ft_free_push_swap(stack_1);
 }
 
 void	aux_main(t_stack **stack_1, char **argv, int argc)
