@@ -6,11 +6,16 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:57:00 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/19 11:21:28 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:59:48 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
+
+void	leaks(void)
+{
+	system("leaks -q push_swap");
+}
 
 int	main(int argc, char **argv)
 {
@@ -78,3 +83,5 @@ void	algorithm(t_stack **stack_1, t_stack **stack_2)
 		move_place_to_the_top(stack_1, i, 'a');
 	}
 }
+
+//https://pinetools.com/es/generador-numeros-aleatorios

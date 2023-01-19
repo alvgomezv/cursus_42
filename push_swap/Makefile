@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2023/01/16 16:34:04 by alvgomez         ###   ########.fr        #
+#    Updated: 2023/01/19 19:23:28 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,13 +46,13 @@ OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 all:	${NAME}
 		 
 ${NAME}:	${LIBFT} ${OBJS} 
-		${CC}  ${FLAGS} ${OBJS} ${LIBFT} -o ${NAME}
+		${CC} ${FLAGS} ${OBJS} ${LIBFT} -o ${NAME}
 
 ${LIBFT}:
 		${MAKE} -C libft all
 
 ${BONUS}:	${LIBFT} ${OBJS_BONUS} 
-		${CC}  ${FLAGS} ${OBJS_BONUS} ${LIBFT} -o ${BONUS}
+		${CC} ${FLAGS} ${OBJS_BONUS} ${LIBFT} -o ${BONUS}
 
 bonus:	${BONUS} 
 

@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2022/10/18 10:58:15 by alvgomez         ###   ########.fr        #
+#    Updated: 2023/01/19 19:04:43 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ ft_void_hexadecimal.c \
 
 OBJS = ${SRCS:.c=.o}
 
+CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
 all:	${NAME}	
