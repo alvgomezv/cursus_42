@@ -6,26 +6,20 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 17:23:14 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/19 21:19:01 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:07:32 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include "./MLX42/include/MLX42/MLX42.h"
+#include "fdf.h"
 
 #define WIDTH 500
 #define HEIGHT 500
 #define BPP sizeof(int32_t)
 
-mlx_image_t	*g_img;
-
 void	hook(void *param)
 {
-	mlx_t	*mlx;
-
-	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
+	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
+		mlx_close_window(param);
 	//if (mlx_is_key_down(mlx, MLX_KEY_UP))
 	//	g_img->instances[0].y -= 5;
 	//if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
@@ -44,12 +38,16 @@ static void ft_error(void)
 
 void	key_hook(mlx_key_data_t keydata, void* param)
 {
+	param = 0;
+	
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE && keydata.modifier == MLX_CONTROL)
 		puts("Gotta grab it all!");
 }
 
 void my_scrollhook(double xdelta, double ydelta, void* param)
 {
+	param = 0;
+	
 	// Simple up or down detection.
 	if (ydelta > 0)
 		puts("Up!");
@@ -63,34 +61,60 @@ void my_scrollhook(double xdelta, double ydelta, void* param)
 		puts("Sliiiide to the right!");
 }
 
-int draw_line(void *mlx, int beginX, int beginY, int endX, int endY, int color)
+void draw_line(void *img, int beginX, int beginY, int endX, int endY, int color)
 {
-	
+	double deltaX;
+	double deltaY;
+	double pixelX;
+	double pixelY;
+	int pixels;
+
+	deltaX = endX - beginX;
+	deltaY = endY - beginY;
+
+	pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+
+	deltaX /= pixels;
+	deltaY /= pixels;
+	pixelX = beginX;
+	pixelY = beginY;
+
+	while (pixels)
+	{
+	    mlx_put_pixel(img, pixelX, pixelY, color);
+	    pixelX += deltaX;
+	    pixelY += deltaY;
+	    --pixels;
+	}	
 }
 
 
 
-int32_t	main(void)
+int32_t	main(int argc, char **argv)
 {
 	mlx_t	*mlx;
+	mlx_image_t	*img;
 
+	if (argc != 2)
+		exit(EXIT_FAILURE);
+	read_map(argv);
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 		
-	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	//memset(g_img->pixels, 255, g_img->width * g_img->height * BPP);
-	if (mlx_image_to_window(mlx, g_img, 0, 0) < 0)
+	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
 		ft_error();
 	
-	//mlx_put_pixel(g_img, WIDTH/2, HEIGHT/2, 0xFFFFFF);
-	draw_line(mlx, 10, 10, 20, 10, 0xFFFFFF);
+	//mlx_put_pixel(img, WIDTH/2, HEIGHT/2, 0xFFFFFF);
+	draw_line(img, 0, 0, 200, 200, 0xFFFFFF);
 	
 	mlx_loop_hook(mlx, &hook, mlx);
 	//mlx_key_hook(mlx, &key_hook, NULL);
 	//mlx_scroll_hook(mlx, &my_scrollhook, NULL);
 	mlx_loop(mlx);
-	mlx_delete_image(mlx, g_img);
+	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }

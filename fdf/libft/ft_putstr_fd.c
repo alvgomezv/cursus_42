@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:21:01 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 12:25:24 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:24:55 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,10 @@ void	ft_putstr_fd(char *s, int fd)
 		i++;
 	}
 }
+
+/*int main(void)
+{
+
+	ft_putstr_fd("hola que tal", 2);
+
+}*/

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_void_hexadecimal.c                              :+:      :+:    :+:   */
+/*   ft_void_hexadecimal_printf.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:01:12 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/11 20:54:07 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:52:11 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_hexadecimal_2(unsigned long int nbr, char *base)
 	return (res + 1);
 }
 
-int	ft_void_hexadecimal(void *ptr)
+int	ft_void_hexadecimal_printf(void *ptr)
 {
 	unsigned long int	a;
 

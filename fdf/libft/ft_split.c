@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:18:13 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 11:25:42 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:28:29 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,3 +98,36 @@ char	**ft_split(char const *s, char c)
 	str[i] = 0;
 	return (str);
 }
+
+/*int main(void)
+{
+	char **str;
+	int i;
+	
+	i = 0;
+	str = ft_split("hola", ' ');
+	while (i < 9)
+	{
+		printf("%s\n", str[i]);
+		i++;
+	}
+}*/
+
+/*int main(void)
+{
+    char **tabstr;
+	int i;
+	
+	i = 0;
+	if (!(tabstr = ft_split("lorem ipsum dolor sit amet, 
+	consectetur adipiscing elit. Sed non risus. Suspendisse", ' ')))
+        printf("NULL");
+    else
+    {
+        while (tabstr[i] != NULL)
+        {
+            printf("%s\n", tabstr[i]);
+            i++;
+        }
+    }
+}*/

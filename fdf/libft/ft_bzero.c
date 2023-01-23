@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:23:29 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/24 12:51:09 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:19:36 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,16 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
+
+/*int	main(void)
+{
+	char *str1;
+	char *str2;
+
+	str1 = (char *)malloc(6 * sizeof(char));
+	str2 = (char *)malloc(6 * sizeof(char));
+	bzero(str1, 2);
+	ft_bzero(str2, 4);
+	printf("%s\n", str1);
+	printf("%s", str2);
+}*/

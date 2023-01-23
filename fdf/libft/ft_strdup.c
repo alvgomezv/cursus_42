@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:59:36 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 11:25:53 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:11:29 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,19 @@ char	*ft_strdup(const char *s1)
 	}
 	return (0);
 }
+
+/*int main(void)
+{
+    char *path1;
+	char *path2;
+    char *temp = "hola";
+
+    path1 = strdup(temp);
+	path2 = ft_strdup(temp);
+    printf("%s\n", path1);
+	printf("%s\n", path2);
+    free(path1);
+	free(path2);
+
+	return (0);
+}*/

@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   fdf_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 15:27:14 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/28 15:31:06 by alvgomez         ###   ########.fr       */
+/*   Created: 2023/01/23 17:30:42 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/01/23 19:05:37 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	read_map(char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	write(fd, "\n", 1);
+	argv = 0;
 }
-
-/*int main(void)
-{
-
-	ft_putendl_fd("hola que tal", 2);
-
-}*/

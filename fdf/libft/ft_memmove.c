@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 15:44:41 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 11:25:03 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:33:41 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,21 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
+
+/*int main () 
+{
+   char dst1[11];
+   char dst2[11];
+   const char src[]  = "lorem ipum dolor sit a";
+
+   printf("1 dest = %s\n", dst1);
+   memmove(dst1, src, 10);
+   printf("1 dest = %s\n", dst1);
+   
+   printf("\n");
+   
+   printf("2 dest = %s\n", dst2);
+   ft_memmove(dst2, src, 10);
+   printf("2 dest = %s\n", dst2);
+   return(0);
+}*/

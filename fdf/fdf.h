@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 15:27:14 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/28 15:31:06 by alvgomez         ###   ########.fr       */
+/*   Created: 2023/01/23 17:53:48 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/01/23 19:12:21 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "libft.h"
+#ifndef FDF_H
+# define FDF_H
 
-void	ft_putendl_fd(char *s, int fd)
+#include "./Libft/libft.h"
+#include "./MLX42/include/MLX42/MLX42.h"
+#include "./get_next_line/get_next_line.h"
+#include <math.h>
+
+typedef struct s_stack
 {
-	int	i;
+	int	val;
+	int	pos;
+}				t_stack;
 
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	write(fd, "\n", 1);
-}
+void	read_map(char **argv);
 
-/*int main(void)
-{
-
-	ft_putendl_fd("hola que tal", 2);
-
-}*/
+#endif

@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 10:52:12 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 11:26:40 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:30:19 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,27 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
+
+/*
+The strnstr() function locates the	first occurrence of the	
+null-termi-nated string little in the string big, where 
+not more than len characters are searched. 
+Characters that appear after a `\0'	character are not
+searched.
+*/
+
+/*int	main (void)
+{
+	char	*big = "lorem ipsum dolor sit amet";
+	char	*little = "dol";
+	size_t	len;
+	char	*result1;
+	char	*result2;
+
+	len = ft_strlen(big);
+	result1 = strnstr(big, little, len);
+	printf("%s\n", result1);
+	result2 = ft_strnstr(big, little, len);
+	printf("%s\n", result2);
+	return (0);
+}*/

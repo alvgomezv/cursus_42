@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putstr_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 15:27:14 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/09/28 15:31:06 by alvgomez         ###   ########.fr       */
+/*   Created: 2022/08/23 12:43:43 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/01/23 15:51:54 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	ft_putstr_printf(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (s[i])
+	if (str == NULL)
 	{
-		write(fd, &s[i], 1);
+		write(1, "(null)", 6);
+		return (6);
+	}
+	if (!str)
+		return (-1);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
 		i++;
 	}
-	write(fd, "\n", 1);
+	return (i);
 }
-
-/*int main(void)
-{
-
-	ft_putendl_fd("hola que tal", 2);
-
-}*/

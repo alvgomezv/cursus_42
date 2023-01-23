@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:23:17 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 11:26:43 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:36:01 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,19 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
+
+/*int main () 
+{
+   char	*str = "abbbbbbbb";
+   char	ch = 'a';
+   char 		*rest1;
+   char 		*rest2;
+
+   rest1 = strrchr(str, ch);
+   rest2 = ft_strrchr(str, ch);
+
+   printf("String after last |%c| is - |%s|\n", ch, rest1);
+   printf("String after last |%c| is - |%s|\n", ch, rest2);
+   
+   return(0);
+}*/

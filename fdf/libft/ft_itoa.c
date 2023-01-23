@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:13:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 12:24:49 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:01:42 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,8 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
+
+/*int	main(void)
+{
+	printf("%s\n", ft_itoa(-1933));
+}*/

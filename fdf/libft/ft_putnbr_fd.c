@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:32:27 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 12:25:02 by alvgomez         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:57:46 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,8 @@ void	ft_putnbr_fd(int n, int fd)
 	else
 		ft_putchar_fd((char)(n + '0'), fd);
 }
+
+/*int	main(void)
+{
+	ft_putnbr_fd(-214748364, 2);
+}*/

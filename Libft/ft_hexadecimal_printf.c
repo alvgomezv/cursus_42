@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_hexadecimal_printf.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 15:08:32 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/11 20:54:47 by alvgomez         ###   ########.fr       */
+/*   Created: 2022/10/05 11:01:12 by alvgomez          #+#    #+#             */
+/*   Updated: 2023/01/23 15:54:51 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//#include <unistd.h>
+//#include <stdio.h>
 #include "libft.h"
 
-int	ft_putchar(int c)
+int	ft_hexadecimal_printf(unsigned int nbr, char *base)
 {
-	write(1, &c, 1);
-	return (1);
+	unsigned int	quot;
+	unsigned int	mod;
+	unsigned int	res;
+
+	res = 0;
+	quot = nbr / 16;
+	mod = nbr % 16;
+	if (quot != 0)
+		res = (ft_hexadecimal_printf(quot, base));
+	write(1, &base[mod], 1);
+	return (res + 1);
 }
+
+/*int	main(void)
+{
+	printf("\n%d\n", ft_hexadecimal(-1542, "0123456789ABCDEF"));
+}*/

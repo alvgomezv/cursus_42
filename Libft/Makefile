@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2022/10/01 11:44:06 by alvgomez         ###   ########.fr        #
+#    Updated: 2023/01/23 15:53:36 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,13 @@ ft_putchar_fd.c \
 ft_putstr_fd.c \
 ft_putendl_fd.c \
 ft_putnbr_fd.c \
+ft_printf.c \
+ft_hexadecimal_printf.c \
+ft_putchar_printf.c \
+ft_putnbr_printf.c \
+ft_putstr_printf.c \
+ft_unsigned_putnbr_printf.c \
+ft_void_hexadecimal_printf.c \
 
 BONUS_SRCS = ft_lstnew_bonus.c \
 ft_lstadd_front_bonus.c \

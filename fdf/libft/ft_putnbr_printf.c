@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:32:27 by alvgomez          #+#    #+#             */
-/*   Updated: 2022/10/18 12:25:20 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:51:47 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static long int	multi(int nb)
 	return (mult);
 }
 
-int	ft_putnbr(int nb)
+int	ft_putnbr_printf(int nb)
 {
 	long int	mult;
 	int			a;
@@ -81,3 +81,8 @@ int	ft_putnbr(int nb)
 		return (a + print_number(nb, mult));
 	}
 }
+
+/*int main(void)
+{
+	printf("\n%d\n", ft_putnbr(-436625));
+}*/
