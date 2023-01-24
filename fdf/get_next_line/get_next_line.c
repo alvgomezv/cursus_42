@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:08:07 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/23 19:01:07 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:29:15 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 char	*get_last_buff(char *last_buff, int fd)
 {
-	char	buff[BUFFER_SIZE + 1];
+	char	*buff;
 	int		nbr_bytes;
 
+	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	nbr_bytes = BUFFER_SIZE;
 	while (ft_strchr_gnl(last_buff, '\n') == NULL && nbr_bytes == BUFFER_SIZE)
 	{
 		nbr_bytes = read(fd, buff, BUFFER_SIZE);
 		if (nbr_bytes == 0)
 		{
+			free (buff);
 			return (last_buff);
 		}
 		buff[nbr_bytes] = '\0';
 		last_buff = ft_strjoin_gnl(last_buff, buff);
 	}
+	free (buff);
 	return (last_buff);
 }
 
