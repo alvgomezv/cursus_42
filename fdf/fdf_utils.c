@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:30:42 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/24 18:44:33 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:58 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ t_map	*fill_map(char **matrix)
 	while (matrix[i])
 		i++;
 	map = (t_map *)malloc(sizeof(t_map));
+	map->s = (t_spec *)malloc(sizeof(t_spec));
+	map->v = (t_val *)malloc(sizeof(t_val));
 	map->map = (int **)malloc(i * sizeof(int *));
 	i = 0;
 	while (matrix[i])
@@ -86,20 +88,21 @@ t_map	*fill_map(char **matrix)
 		while (matrix[i][j])
 		{
 			//ft_printf("j = %d\n", j);
-			if (matrix[i][j] != ' ' && matrix[i][j] != '\n')
+			if (matrix[i][j] != ' ' && matrix[i][j])
 			{
 				//ft_printf("%d\n", ft_atoi(&matrix[i][j]));
 				map->map[i][cont] = ft_atoi(&matrix[i][j]);
 				cont++;
-				map->x = cont;
 				map->map[i] = ft_realloc_map(map->map[i], (cont + 1));
 				//ft_printf("cont = %d\n", cont);
-				while (matrix[i][j] != ' ' && matrix[i][j])
+				while (matrix[i][j] != ' ' && matrix[i][j] != '\n' && matrix[i][j])
 					j++;
 			}
-			j++;
+			while (matrix[i][j] == ' ' || matrix[i][j] == '\n')
+				j++;
 		}
-	map->y = (i + 1);
+	map->s->size_y = (i + 1);
+	map->s->size_x = cont;
 	cont = 0;
 	j = 0;
 	i++;
@@ -137,7 +140,7 @@ t_map	*get_map(char **argv)
 	//	i++;
 	//}
 	
-	map = fill_map(matrix);
 	
+	map = fill_map(matrix);
 	return (map);
 }
