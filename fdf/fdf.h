@@ -25,7 +25,7 @@ typedef struct s_spec
 	int		offset_x;
 	int		offset_y;
 	int		margin;
-	int		spacing;
+	float	spacing;
 	int		color_start;
 	int		color_end;
 	int		max_height;
@@ -42,8 +42,9 @@ typedef struct s_spec
 	double 	pixel_y;
 	int		win_x;
 	int		win_y;
-	int		size_x;
+	int		*size_x;
 	int		size_y;
+	float	height_factor;
 }				t_spec;
 
 typedef struct s_val

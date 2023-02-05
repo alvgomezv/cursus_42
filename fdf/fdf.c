@@ -30,6 +30,7 @@ void	ft_free_map(t_map *map)
 		i++;
 	}
 	free (map->map);
+	free (map->s->size_x);
 	free (map->s);
 	free (map->v);
 	free (map);
@@ -55,23 +56,26 @@ static void ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	key_hook(mlx_key_data_t keydata, void* param)
+void	key_hook(mlx_key_data_t keydata, t_map *map)
 {
-	param = 0;
-	
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE && keydata.modifier == MLX_CONTROL)
 		puts("Gotta grab it all!");
 }
 
-void my_scrollhook(double xdelta, double ydelta, void* param)
+void my_scrollhook(double xdelta, double ydelta, t_map *map)
 {
-	param = 0;
-	
 	// Simple up or down detection.
 	if (ydelta > 0)
+	{
 		puts("Up!");
+		//map->s->height_factor += 0.01;
+	}
+
 	else if (ydelta < 0)
+	{
 		puts("Down!");
+		//map->s->height_factor -= 0.01;
+	}
 	
 	// Can also detect a mousewheel that go along the X (e.g: MX Master 3)
 	if (xdelta < 0)
@@ -204,7 +208,7 @@ void	isometric_pixel(t_map *map, int source_x, int source_y, int source_z)
 	
 	angle = map->s->angle * (M_PI / 180);
 	map->s->isometric_x = (source_x - source_y) * cos(angle) + map->s->offset_x;
-	map->s->isometric_y = (source_x + source_y) * sin(angle) - source_z + map->s->offset_y;
+	map->s->isometric_y = (source_x + source_y) * sin(angle) - (source_z * map->s->height_factor) + map->s->offset_y;
 	//ft_printf("iso y = %d\n", map->s->isometric_x);
 }
 
@@ -214,7 +218,7 @@ void	isometric_line_start(t_map *map, int source_x, int source_y, int source_z)
 	
 	angle = map->s->angle * (M_PI / 180);
 	map->s->isometric_x_start = (source_x - source_y) * cos(angle) + map->s->offset_x;
-	map->s->isometric_y_start = (source_x + source_y) * sin(angle) - source_z + map->s->offset_y;
+	map->s->isometric_y_start = (source_x + source_y) * sin(angle) - (source_z * map->s->height_factor) + map->s->offset_y;
 }
 
 void	isometric_line_end(t_map *map, int source_x, int source_y, int source_z)
@@ -223,7 +227,7 @@ void	isometric_line_end(t_map *map, int source_x, int source_y, int source_z)
 	
 	angle = map->s->angle * (M_PI / 180);
 	map->s->isometric_x_end = (source_x - source_y) * cos(angle) + map->s->offset_x;
-	map->s->isometric_y_end = (source_x + source_y) * sin(angle) - source_z + map->s->offset_y;
+	map->s->isometric_y_end = (source_x + source_y) * sin(angle) - (source_z * map->s->height_factor) + map->s->offset_y;
 }
 
 void	draw_horizontal_lines(t_map *map, mlx_image_t *img)
@@ -235,7 +239,7 @@ void	draw_horizontal_lines(t_map *map, mlx_image_t *img)
 	j = 0;
 	while(i < map->s->size_y)
 	{ 
-		while(j < (map->s->size_x - 1))
+		while(j < (map->s->size_x[i] - 1))
 		{
 			isometric_line_start(map, j * map->s->spacing, i * map->s->spacing, map->map[i][j]);
 			isometric_line_end(map, (j + 1) * map->s->spacing, i * map->s->spacing, map->map[i][j + 1]);
@@ -257,7 +261,7 @@ void	draw_vertical_lines(t_map *map, mlx_image_t *img)
 	j = 0;
 	while(i < (map->s->size_y - 1))
 	{ 
-		while(j < map->s->size_x)
+		while(j < map->s->size_x[i])
 		{
 			isometric_line_start(map, j * map->s->spacing, i * map->s->spacing, map->map[i][j]);
 			isometric_line_end(map, j * map->s->spacing, (i + 1) * map->s->spacing, map->map[i + 1][j]);
@@ -284,7 +288,7 @@ void	find_min_and_max(t_map *map)
 	map->v->min_y = map->s->isometric_y;
 	while(i < map->s->size_y)
 	{ 
-		while(j < map->s->size_x)
+		while(j < map->s->size_x[i])
 		{
 			isometric_pixel(map, (j * map->s->spacing), (i * map->s->spacing), map->map[i][j]);
 			//ft_printf("iso y = %d\n", map->s->isometric_x);
@@ -354,11 +358,15 @@ void	fit_into_screen(t_map *map)
 	//}
 	find_min_and_max(map);
 	calculate_centers(map);
-	while ((map->v->min_x < map->s->margin) || (map->v->max_x  > (map->s->win_x - map->s->margin))
+	while (((map->v->min_x < map->s->margin) || (map->v->max_x  > (map->s->win_x - map->s->margin))
 		|| (map->v->min_y < map->s->margin) || (map->v->max_y  > (map->s->win_y - map->s->margin)))
+		&& map->s->spacing > 0.5 )
 	{ 
-		map->s->spacing--;
-		//ft_printf("spacing = %d\n", map->s->spacing);
+		if (map->s->spacing <= 1)
+			map->s->spacing -= 0.01;
+		else
+			map->s->spacing--;
+		//printf("spacing = %f\n", map->s->spacing);
 		find_min_and_max(map);
 		calculate_centers(map);
 		//ft_printf("x = %d\n", map->s->isometric_x);
@@ -376,7 +384,7 @@ void	draw_map(t_map *map, mlx_image_t *img)
 	j = 0;
 	while(i < map->s->size_y)
 	{ 
-		while(j < map->s->size_x)
+		while(j < map->s->size_x[i])
 		{
 			if (map->map[i][j] > map->s->max_height)
 				map->s->max_height = map->map[i][j];
@@ -413,6 +421,7 @@ void	initial_specifications(t_map *map)
 	map->v->min_x = 0;
 	map->v->max_y = 0;
 	map->v->min_y = 0;
+	map->s->height_factor = 0.5;
 }
 
 void	print_map(t_map *map)
@@ -424,7 +433,7 @@ void	print_map(t_map *map)
 	j = 0;
 	while (i < map->s->size_y)
 	{
-		while(j < map->s->size_x)
+		while(j < map->s->size_x[i])
 		{
 			ft_printf("%d ", map->map[i][j]);
 			j++;
@@ -444,11 +453,11 @@ int32_t	main(int argc, char **argv)
 	if (argc != 2)
 		exit(EXIT_FAILURE);
 	map = get_map(argv);
-	print_map(map);
+	//print_map(map);
 
 	initial_specifications(map);
 	
-	ft_printf("x = %d\n", map->s->size_x);
+	ft_printf("x[0] = %d\n", map->s->size_x[0]);
 	ft_printf("y = %d\n", map->s->size_y);
 
 	//ft_printf("off x = %d\n", map->s->offset_x);

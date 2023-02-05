@@ -81,6 +81,7 @@ t_map	*fill_map(char **matrix)
 	map->s = (t_spec *)malloc(sizeof(t_spec));
 	map->v = (t_val *)malloc(sizeof(t_val));
 	map->map = (int **)malloc(i * sizeof(int *));
+	map->s->size_x = (int *)malloc(i * sizeof(int));
 	i = 0;
 	while (matrix[i])
 	{
@@ -101,8 +102,8 @@ t_map	*fill_map(char **matrix)
 			while (matrix[i][j] == ' ' || matrix[i][j] == '\n')
 				j++;
 		}
+	map->s->size_x[i] = cont;
 	map->s->size_y = (i + 1);
-	map->s->size_x = cont;
 	cont = 0;
 	j = 0;
 	i++;

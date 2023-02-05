@@ -33,7 +33,8 @@ OBJS = ${SRCS:.c=.o}
 all:	${NAME}
 		 
 ${NAME}:	${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL}
-		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
+#		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
+		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/usr/local/Cellar/glfw/3.3.8/lib" -o ${NAME}
 
 #${NAME}:	${LIBFT} ${LIBMLX} ${GNL} ${OBJS} 
 #		${CC} ${FLAGS} ${OBJS} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
