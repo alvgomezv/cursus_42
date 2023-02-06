@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2023/02/03 12:09:11 by alvgomez         ###   ########.fr        #
+#    Updated: 2023/02/06 17:25:09 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,29 @@ LIBMLX = ./MLX42/libmlx42.a
 NAME = fdf
 #BONUS = 
 
-SRCS = fdf.c \
-	fdf_utils.c \
+#LIBRARY ARCHIVE
+#LIBFT = $(LIBFT_DIRECTORY)libft.a
+#LIBFT_DIRECTORY = ./libft/
+#LIBFT_HEADERS = $(LIBFT_DIRECTORY)
+#INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(LIBMLX_HEADERS)
+#
+#LIBMLX = $(LIBMLX_DIRECTORY)libmlx42.a
+#LIBMLX_DIRECTORY = ./MLX42
+#LIBMLX_HEADERS = $(LIBMLX_DIRECTORY)
+#
+##HEADERS
+#HEADERS_LIST = fdf.h
+#HEADERS_DIRECTORY = ./incl/
+#HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
+
+#SOURCES
+SRC_DIRECTORY = ./
+SRCS = $(addprefix $(SOURCES_DIRECTORY), $(wildcard *.c))
+
+# OBJECTS
+#OBJECTS_DIRECTORY = objs/
+#OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
+#OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
 #SRCS_BONUS = 
 
@@ -33,8 +54,8 @@ OBJS = ${SRCS:.c=.o}
 all:	${NAME}
 		 
 ${NAME}:	${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL}
-#		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
-		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/usr/local/Cellar/glfw/3.3.8/lib" -o ${NAME}
+		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
+#		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/usr/local/Cellar/glfw/3.3.8/lib" -o ${NAME}
 
 #${NAME}:	${LIBFT} ${LIBMLX} ${GNL} ${OBJS} 
 #		${CC} ${FLAGS} ${OBJS} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
@@ -44,6 +65,9 @@ ${LIBFT}:
 
 ${LIBMLX}:
 		${MAKE} -C MLX42 all
+
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
 
 ${GNL}:
 		${MAKE} -C get_next_line all
