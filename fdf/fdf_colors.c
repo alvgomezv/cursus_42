@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:52:29 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/06 11:56:28 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:15:26 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	get_percentage_color(t_map *map, int height)
 	float	percentage;
 	int		color;
 
-	percentage = (double)(height - map->s->min_height)
-		/ (double)(map->s->max_height - map->s->min_height);
+	percentage = (double)(height - map->h->min_height)
+		/ (double)(map->h->max_height - map->h->min_height);
 	color = get_gradient_color(percentage,
-			map->s->color_start, map->s->color_end);
-	if (map->s->max_height == map->s->min_height)
-		color = map->s->color_start;
+			map->c->color_start, map->c->color_end);
+	if (map->h->max_height == map->h->min_height)
+		color = map->c->color_start;
 	return (color);
 }

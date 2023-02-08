@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:05:30 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/06 12:28:55 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:18:34 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,16 @@ void	ft_free_map(t_map *map)
 	free (map->s->size_x);
 	free (map->s);
 	free (map->v);
+	free (map->c);
+	free (map->i);
+	free (map->h);
+	free (map->l);
+	free (map->r);
 	free (map);
 }
 
-void	ft_error(void)
+void	ft_error(char *str)
 {
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	ft_printf("%s\n", str);
 	exit(EXIT_FAILURE);
 }
