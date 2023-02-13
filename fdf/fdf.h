@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:53:48 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/08 17:19:22 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:57:20 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define SCRN_WIDTH		1400
 # define PROJ_ANGLE		30
 # define CLR_SCRN		0x222222
+# define CLR_START		0xFFFF00FF
+# define CLR_END		0xFF00FFFF
 
 typedef struct s_spec
 {
@@ -47,10 +49,13 @@ typedef struct s_val
 
 typedef struct s_col
 {
-	int		color_start;
-	int		color_end;
-	int		aux_color_start;
-	int		aux_color_end;
+	unsigned int	color_start;
+	unsigned int	color_end;
+	int				aux_color_start;
+	int				aux_color_end;
+	int				r;
+	int				g;
+	int				b;
 }				t_col;
 
 typedef struct s_iso
@@ -58,11 +63,19 @@ typedef struct s_iso
 	int		isometric_x;
 	int		isometric_y;
 	int		isometric_z;
-	int		isometric_x_start;
-	int		isometric_y_start;
-	int		isometric_x_end;
-	int		isometric_y_end;
 }				t_iso;
+
+typedef struct s_project
+{
+	int		x;
+	int		y;
+	int		z;
+	int		x_start;
+	int		y_start;
+	int		x_end;
+	int		y_end;
+	int		type;
+}				t_project;
 
 typedef struct s_height
 {
@@ -84,6 +97,9 @@ typedef struct s_rot
 	float	alpha;
 	float	beta;
 	float	gamma;
+	int		rot_x;
+	int		rot_y;
+	int		rot_z;
 }				t_rot;
 
 typedef struct s_map
@@ -93,6 +109,7 @@ typedef struct s_map
 	t_val		*v;
 	t_col		*c;
 	t_iso		*i;
+	t_project	*p;
 	t_height	*h;
 	t_line		*l;
 	t_rot		*r;
@@ -101,10 +118,10 @@ typedef struct s_map
 }				t_map;
 
 //Main
-void	draw_map(t_map *map, mlx_image_t *img);
 void	initial_specifications(t_map *map);
 void	draw_clear_background(t_map *map);
 void	put_pixels(mlx_image_t *img, int x, int y, int color);
+int		check_map(t_map *map);
 
 //Utils_1
 t_map	*get_map(char **argv);
@@ -124,37 +141,36 @@ void	ft_error(char *str);
 int		rgb_to_int(int red, int green, int blue, int alpha);
 int		get_gradient_color(double fraction, int color_start, int color_end);
 int		get_percentage_color(t_map *map, int height);
-
-//Isometric
-void	isometric_pixel(t_map *map, int source_x, int source_y, int source_z);
-void	isometric_line_start(t_map *map, int source_x,
-			int source_y, int source_z);
-void	isometric_line_end(t_map *map, int source_x,
-			int source_y, int source_z);
+void	change_colors(t_map *map);
 
 //Screen
 void	find_min_and_max(t_map *map);
-void	calculate_centers(t_map *map);
+void	center_projection(t_map *map);
 void	fit_into_screen(t_map *map);
 void	inicialize_min_and_max(t_map *map);
+void	set_min_max_height(t_map *map);
 
-//Draw_line
+//Draw
+void	draw_map(t_map *map, mlx_image_t *img);
 void	draw_line_with_colors(void *img, t_map *map,
 			int height_start, int height_end);
 void	draw_horizontal_lines(t_map *map, mlx_image_t *img);
 void	draw_vertical_lines(t_map *map, mlx_image_t *img);
-void	aux_line(t_map *map, int pixels, int height_start, int height_end);
-void	draw_line(void *img, t_map *map);
 
 //Hooks
-//void	hook(void *param);
-//void	key_hook(mlx_key_data_t keydata, void *param);
-//void	my_scrollhook(double xdelta, double ydelta, void *param);
 void	set_hooks(t_map *map);
 
 //Rotate
+void	rotate_x(t_map *map, int x, int y, int z);
+void	rotate_y(t_map *map, int x, int y, int z);
+void	rotate_z(t_map *map, int x, int y, int z);
+
+//Projection
+void	isometric_pixel(t_map *map, int source_x, int source_y, int source_z);
 void	projection_pixel(t_map *map, int source_x, int source_y, int source_z);
-void	projection_line_start(t_map *map, int source_x, int source_y, int source_z);
-void	projection_line_end(t_map *map, int source_x, int source_y, int source_z);
+void	projection_line_start(t_map *map, int source_x,
+			int source_y, int source_z);
+void	projection_line_end(t_map *map, int source_x,
+			int source_y, int source_z);
 
 #endif

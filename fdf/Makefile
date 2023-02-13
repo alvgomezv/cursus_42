@@ -6,7 +6,7 @@
 #    By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 15:07:14 by alvgomez          #+#    #+#              #
-#    Updated: 2023/02/06 17:25:09 by alvgomez         ###   ########.fr        #
+#    Updated: 2023/02/13 18:07:26 by alvgomez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,17 @@ GNL = ./get_next_line/get_next_line.a
 LIBMLX = ./MLX42/libmlx42.a
 
 NAME = fdf
-#BONUS = 
 
 #LIBRARY ARCHIVE
 #LIBFT = $(LIBFT_DIRECTORY)libft.a
 #LIBFT_DIRECTORY = ./libft/
 #LIBFT_HEADERS = $(LIBFT_DIRECTORY)
 #INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(LIBMLX_HEADERS)
-#
+
 #LIBMLX = $(LIBMLX_DIRECTORY)libmlx42.a
 #LIBMLX_DIRECTORY = ./MLX42
 #LIBMLX_HEADERS = $(LIBMLX_DIRECTORY)
-#
+
 ##HEADERS
 #HEADERS_LIST = fdf.h
 #HEADERS_DIRECTORY = ./incl/
@@ -40,25 +39,18 @@ SRCS = $(addprefix $(SOURCES_DIRECTORY), $(wildcard *.c))
 # OBJECTS
 #OBJECTS_DIRECTORY = objs/
 #OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
-#OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
-
-#SRCS_BONUS = 
+#OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST)
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
 OBJS = ${SRCS:.c=.o}
 
-#OBJS_BONUS = ${SRCS_BONUS:.c=.o}
-
 all:	${NAME}
 		 
 ${NAME}:	${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL}
 		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
 #		${CC} ${FLAGS} ${OBJS} ${FDF} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/usr/local/Cellar/glfw/3.3.8/lib" -o ${NAME}
-
-#${NAME}:	${LIBFT} ${LIBMLX} ${GNL} ${OBJS} 
-#		${CC} ${FLAGS} ${OBJS} ${LIBMLX} ${LIBFT} ${GNL} -I include -lglfw -L "/Users/alvgomez/.brew/opt/glfw/lib/" -o ${NAME}
 
 ${LIBFT}:
 		${MAKE} -C libft all
@@ -76,25 +68,18 @@ ${FDF}:
 		${CC} ${FLAGS} -c ${SRCS}
 		ar rc ${FDF} ${OBJS}
 
-#${BONUS}:	${LIBFT} ${OBJS_BONUS} 
-#		${CC}  ${FLAGS} ${OBJS_BONUS} ${LIBFT} -o ${BONUS}
-
-#bonus:	${BONUS} 
-
 clean:	
 		@rm -f ${OBJS}
-#		@rm -f ${OBJS_BONUS}
 		@${MAKE} -C libft clean
 		@${MAKE} -C MLX42 clean
 		@${MAKE} -C get_next_line clean
 
 fclean:	clean
 		@rm -f ${NAME} ${FDF}
-#		@rm -f ${BONUS}
 		@${MAKE} -C libft fclean
 		@${MAKE} -C MLX42 fclean
 		@${MAKE} -C get_next_line fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re #bonus
+.PHONY: all clean fclean re

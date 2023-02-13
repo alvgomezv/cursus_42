@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:08:07 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/01/24 11:29:15 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:05:26 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ char	*get_new_buffer(char *last_buff)
 	i = 0;
 	while (last_buff[i] != '\n' && last_buff[i] != '\0')
 		i++;
-	temp = ft_substr_gnl(last_buff, (i + 1), (ft_strlen_gnl(last_buff) - i - 1));
+	temp = ft_substr_gnl(last_buff, (i + 1),
+			(ft_strlen_gnl(last_buff) - i - 1));
 	free (last_buff);
 	return (temp);
 }

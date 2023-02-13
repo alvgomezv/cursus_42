@@ -6,35 +6,61 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:05:53 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/08 17:10:25 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:15:52 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	hook(void *param)
+void	hook_1(void *param)
 {
 	t_map	*map;
 
 	map = (t_map *)param;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(map->mlx);
-	//if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
-	//	draw_clear_background(map);
-	//if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-	//	g_img->instances[0].y += 5;
-	//if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-	//	g_img->instances[0].x -= 5;
-	//if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-	//	g_img->instances[0].x += 5;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_1))
+		if (map->h->height_factor > 0 && map->h->height_factor <= 20)
+			map->h->height_factor *= 1.2;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_2))
+		if (map->h->height_factor > 0)
+			map->h->height_factor /= 1.2;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_P))
+	{
+		if (map->p->type == 1)
+			map->p->type = 0;
+		else
+			map->p->type = 1;
+		map->r->alpha = 0;
+		map->r->beta = 0;
+		map->r->gamma = 0;
+		usleep(100000);
+	}
+	if (mlx_is_key_down(map->mlx, MLX_KEY_C))
+		change_colors(map);
+	draw_map(map, map->img);
 }
 
-//void	key_hook(mlx_key_data_t keydata, void *param)
-//{
-//	if (keydata.key == MLX_KEY_A && keydata.action
-//		== MLX_RELEASE && keydata.modifier == MLX_CONTROL)
-//		puts("Gotta grab it all!");
-//
+void	hook_2(void *param)
+{
+	t_map	*map;
+
+	map = (t_map *)param;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_X))
+		map->r->alpha += 0.1;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_Y))
+		map->r->beta += 0.1;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_Z))
+		map->r->gamma += 0.1;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(map->mlx);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
+		map->s->offset_y -= 5;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
+		map->s->offset_y += 5;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
+		map->s->offset_x -= 5;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
+		map->s->offset_x += 5;
+}
 
 void	my_scrollhook(double xdelta, double ydelta, void *param)
 {
@@ -43,39 +69,21 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 	map = (t_map *)param;
 	if (ydelta > 0)
 	{
-		puts("Up!");
-		//if (map->h->height_factor > 0 && map->h->height_factor <= 5)
-		//	map->h->height_factor *= 2;
-		if (map->v->zoom <= 4)
+		if (map->v->zoom <= 10)
 			map->v->zoom *= 1.1;
-		
-		//map->r->alpha += 0.03;
 	}
 	else if (ydelta < 0)
 	{
-		puts("Down!");
-		//if (map->h->height_factor > 0)
-		//	map->h->height_factor /= 2;
-
 		if (map->v->zoom >= 0.001)
 			map->v->zoom /= 1.1;
-		
-		//map->r->beta -= 0.03;
 	}
 	draw_map(map, map->img);
-	printf("%f\n", map->v->zoom);
 	xdelta = 0;
 }
 
-//void	my_mousefunc(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
-//{
-//	
-//}
-
 void	set_hooks(t_map *map)
 {
-	mlx_loop_hook(map->mlx, &hook, map);
-	//mlx_key_hook(mlx, &key_hook, map);
+	mlx_loop_hook(map->mlx, &hook_1, map);
+	mlx_loop_hook(map->mlx, &hook_2, map);
 	mlx_scroll_hook(map->mlx, &my_scrollhook, map);
-	//mlx_mouse_hook(map->mlx, &my_mousefunc, map);
 }

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_draw_lines.c                                   :+:      :+:    :+:   */
+/*   fdf_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:52:34 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/08 12:26:34 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:34:12 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	aux_line(t_map *map, int pixels, int height_start, int height_end)
+static void	aux_line(t_map *map, int pixels, int height_start, int height_end)
 {
 	map->l->delta_x /= pixels;
 	map->l->delta_y /= pixels;
-	map->l->pixel_x = map->i->isometric_x_start;
-	map->l->pixel_y = map->i->isometric_y_start;
+	map->l->pixel_x = map->p->x_start;
+	map->l->pixel_y = map->p->y_start;
 	map->c->aux_color_start = get_percentage_color(map, height_start);
 	map->c->aux_color_end = get_percentage_color(map, height_end);
 }
@@ -31,8 +31,8 @@ void	draw_line_with_colors(void *img, t_map *map,
 	int		i;
 
 	i = 0;
-	map->l->delta_x = map->i->isometric_x_end - map->i->isometric_x_start;
-	map->l->delta_y = map->i->isometric_y_end - map->i->isometric_y_start;
+	map->l->delta_x = map->p->x_end - map->p->x_start;
+	map->l->delta_y = map->p->y_end - map->p->y_start;
 	pixels = sqrt((map->l->delta_x * map->l->delta_x)
 			+ (map->l->delta_y * map->l->delta_y));
 	aux_line(map, pixels, height_start, height_end);
@@ -48,26 +48,12 @@ void	draw_line_with_colors(void *img, t_map *map,
 	}	
 }
 
-void	draw_line(void *img, t_map *map)
+void	draw_map(t_map *map, mlx_image_t *img)
 {
-	int	pixels;
-
-	map->l->delta_x = map->i->isometric_x_end - map->i->isometric_x_start;
-	map->l->delta_y = map->i->isometric_y_end - map->i->isometric_y_start;
-	pixels = sqrt((map->l->delta_x * map->l->delta_x)
-			+ (map->l->delta_y * map->l->delta_y));
-	map->l->delta_x /= pixels;
-	map->l->delta_y /= pixels;
-	map->l->pixel_x = map->i->isometric_x_start;
-	map->l->pixel_y = map->i->isometric_y_start;
-	while (pixels)
-	{
-		put_pixels(img, map->l->pixel_x,
-			map->l->pixel_y, map->c->color_start);
-		map->l->pixel_x += map->l->delta_x;
-		map->l->pixel_y += map->l->delta_y;
-		--pixels;
-	}	
+	draw_clear_background(map);
+	set_min_max_height(map);
+	draw_horizontal_lines(map, img);
+	draw_vertical_lines(map, img);
 }
 
 void	draw_horizontal_lines(t_map *map, mlx_image_t *img)

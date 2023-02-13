@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:05:30 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/08 17:18:34 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:03:49 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_free_map(t_map *map)
 	free (map->v);
 	free (map->c);
 	free (map->i);
+	free (map->p);
 	free (map->h);
 	free (map->l);
 	free (map->r);

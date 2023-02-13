@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:52:29 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/08 10:15:26 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:40:21 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,34 @@
 int	rgb_to_int(int red, int green, int blue, int alpha)
 {
 	return (red << 24 | green << 16 | blue << 8 | alpha);
+}
+
+void	change_colors(t_map *map)
+{
+	if (map->c->r == 1000)
+	{
+		map->c->r = 255;
+		map->c->g = 255;
+		map->c->b = 0;
+	}
+	else if (map->c->r > 0 && map->c->g == 255 && map->c->b == 0)
+		map->c->r -= 5;
+	else if (map->c->r == 0 && map->c->g == 255 && map->c->b < 255)
+		map->c->b += 5;
+	else if (map->c->r < 255 && map->c->g == 0 && map->c->b == 255)
+		map->c->r += 5;
+	else if (map->c->r == 0 && map->c->g > 0 && map->c->b == 255)
+		map->c->g -= 5;
+	else if (map->c->r == 255 && map->c->g == 0 && map->c->b > 0)
+		map->c->b -= 5;
+	else
+	{
+		map->c->r = 255;
+		map->c->g = 255;
+		map->c->b = 0;
+	}
+	map->c->color_start = rgb_to_int(map->c->r, map->c->g, map->c->b, 255);
+	map->c->color_end = rgb_to_int(map->c->g, map->c->b, map->c->r, 255);
 }
 
 int	get_gradient_color(double fraction, int color_start, int color_end)

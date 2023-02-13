@@ -6,7 +6,7 @@
 /*   By: alvgomez <alvgomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:30:42 by alvgomez          #+#    #+#             */
-/*   Updated: 2023/02/08 17:18:47 by alvgomez         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:49:44 by alvgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_map	*inicialize_map(char **matrix)
 	map->v = (t_val *)malloc(sizeof(t_val));
 	map->c = (t_col *)malloc(sizeof(t_col));
 	map->i = (t_iso *)malloc(sizeof(t_iso));
+	map->p = (t_project *)malloc(sizeof(t_project));
 	map->h = (t_height *)malloc(sizeof(t_height));
 	map->l = (t_line *)malloc(sizeof(t_line));
 	map->r = (t_rot *)malloc(sizeof(t_rot));
@@ -76,7 +77,7 @@ t_map	*get_map(char **argv)
 	int		i;
 
 	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	if (fd <= 0)
 		ft_error("Map reading error");
 	matrix = (char **)malloc(2 * sizeof(char *));
 	matrix[0] = get_next_line(fd);
